@@ -2221,6 +2221,17 @@ var currentVersion = require("../package.json").version;
   }
 
   if (alive) {
+    // Headless mode — daemon already running, just report and exit
+    if (headlessMode) {
+      var protocol = config.tls ? "https" : "http";
+      var ip = getLocalIP();
+      var url = protocol + "://" + ip + ":" + config.port;
+      console.log("  " + sym.done + "  Daemon already running (PID " + config.pid + ")");
+      console.log("  " + sym.done + "  " + url);
+      process.exit(0);
+      return;
+    }
+
     // Daemon is running — auto-add cwd if needed, then show menu
     var ip = getLocalIP();
 
