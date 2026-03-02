@@ -5,7 +5,7 @@
 .diff-unified,
 .diff-split-view {
   overflow: auto;
-  font-family: "SF Mono", Menlo, Monaco, monospace;
+  font-family: "DM Mono", monospace;
   font-size: 12px;
   line-height: 1.5;
 }

@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Top Bar — full-width bar above everything (forms reverse-ㄱ with icon strip)
+   ========================================================================== */
+
+#top-bar {
+  flex-shrink: 0;
+  height: 32px;
+  background: var(--sidebar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--safe-top) + 0px) 0 0;
+}
+
+.top-bar-title {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: none;
+  -webkit-app-region: no-drag;
+  transition: color 0.15s;
+}
+
+.top-bar-title:hover {
+  color: var(--text);
+}
+
+/* ==========================================================================
+   Title Bar — split into sidebar-column and main-column sections
+   ========================================================================== */
+
+/* --- Sidebar section (inside #sidebar-column) --- */
+.title-bar-sidebar {
+  flex-shrink: 0;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background: var(--sidebar-bg);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.title-bar-project-name {
+  width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Content section (inside #main-column) --- */
+.title-bar-content {
+  flex-shrink: 0;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  min-width: 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.title-bar-content #header-left {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.title-bar-content .status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+  #top-bar {
+    padding-top: var(--safe-top);
+    height: calc(32px + var(--safe-top));
+  }
+
+  #sidebar-column {
+    display: none;
+  }
+
+  .title-bar-content {
+    padding: 0 12px;
+  }
+}

@@ -2,53 +2,37 @@
    Sidebar
    ========================================================================== */
 
-#sidebar {
-  width: 260px;
-  flex-shrink: 0;
+#sidebar-column {
+  width: 240px;
+  min-width: 192px;
+  max-width: 320px;
   background: var(--sidebar-bg);
-  border-right: 1px solid var(--border-subtle);
+  transition: width 0.2s ease;
+  padding-bottom: 58px;
+}
+
+#sidebar {
+  flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: width 0.2s ease;
 }
 
-#layout.sidebar-collapsed #sidebar {
+#layout.sidebar-collapsed #sidebar-column {
   width: 0;
-  border: none;
+  min-width: 0;
+  overflow: hidden;
 }
 
-/* --- Sidebar Header (logo + collapse) --- */
+/* --- Sidebar Header (removed — now in icon-strip + title-bar) --- */
 #sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: calc(var(--safe-top) + 10px) 12px 8px;
-}
-
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.sidebar-logo:hover {
-  color: var(--text);
-}
-
-.sidebar-logo .footer-mascot {
-  flex-shrink: 0;
+  display: none;
 }
 
 #sidebar-nav {
   display: flex;
   flex-direction: column;
-  padding: 4px 8px;
+  padding: 8px 8px 4px;
   flex-shrink: 0;
 }
 
@@ -111,15 +95,16 @@
   padding: 7px 8px 7px 10px;
   cursor: pointer;
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-decoration: none;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s;
   border-left: 3px solid transparent;
   border-radius: 0 6px 6px 0;
 }
 
 .project-list-item:hover {
   background: rgba(var(--overlay-rgb), 0.05);
+  color: var(--text-secondary);
 }
 
 .project-list-item.current {
@@ -206,7 +191,7 @@
   background: var(--accent-15);
   padding: 1px 5px;
   border-radius: 3px;
-  font-family: "SF Mono", Menlo, Monaco, monospace;
+  font-family: "DM Mono", monospace;
   font-size: 10.5px;
   color: var(--accent-hover);
 }
@@ -233,30 +218,9 @@
   height: 12px;
 }
 
+/* sidebar-toggle-btn hidden — collapse handled by icon strip / title bar */
 #sidebar-toggle-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  flex-shrink: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-}
-
-#sidebar-toggle-btn:hover {
-  background: var(--sidebar-hover);
-  color: var(--text);
-}
-
-#sidebar-toggle-btn .lucide {
-  width: 18px;
-  height: 18px;
+  display: none;
 }
 
 /* --- Sidebar section headers --- */
@@ -437,7 +401,7 @@
   border-radius: 10px;
   cursor: pointer;
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   margin-bottom: 0;
   transition: background 0.35s ease, color 0.35s ease;
   contain: size layout;
@@ -453,12 +417,13 @@
 
 .session-item:hover {
   background: var(--sidebar-hover);
-  color: var(--text);
+  color: var(--text-secondary);
 }
 
 .session-item.active {
   background: var(--sidebar-active);
   color: var(--text);
+  font-weight: 600;
 }
 
 .session-item .session-processing {
@@ -553,38 +518,97 @@
   .mermaid-diagram::after { display: none; }
 }
 
-#sidebar-footer {
-  padding: 8px;
-  border-top: 1px solid var(--border-subtle);
-  position: relative;
-}
-
-#sidebar-footer-btn {
+/* --- User Island (bottom bar spanning icon strip + sidebar) --- */
+#user-island {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: calc(72px + 240px - 16px);
+  height: 58px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 8px 10px;
-  border-radius: 8px;
+  background: var(--bg);
+  padding: 0 8px 0 0;
+  gap: 0;
+  z-index: 15;
+  border-radius: 10px;
+}
+
+#user-island::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -8px;
+  right: -8px;
+  height: 8px;
+  background: var(--sidebar-bg);
+}
+
+.user-island-avatar {
+  width: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-island-avatar .footer-mascot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.user-island-info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.user-island-name {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-island-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.user-island-actions button {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
   border: none;
   background: transparent;
   color: var(--text-muted);
-  font-size: 13px;
-  font-family: inherit;
-  font-weight: 500;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.15s, color 0.15s;
 }
 
-#sidebar-footer-btn:hover {
+.user-island-actions button .lucide {
+  width: 16px;
+  height: 16px;
+}
+
+.user-island-actions button:hover {
   background: var(--sidebar-hover);
   color: var(--text-secondary);
 }
 
-.footer-btn-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+#layout.sidebar-collapsed #user-island .user-island-info,
+#layout.sidebar-collapsed #user-island .user-island-actions,
+#layout.sidebar-collapsed #user-island #sidebar-footer-menu {
+  display: none;
 }
 
 .footer-mascot {
@@ -602,7 +626,7 @@
 #sidebar-footer-menu {
   position: absolute;
   bottom: calc(100% + 4px);
-  left: 8px;
+  left: 80px;
   right: 8px;
   background: var(--bg-alt);
   border: 1px solid var(--border);
@@ -790,5 +814,41 @@
 
 .theme-picker-item.active .theme-picker-check {
   opacity: 1;
+}
+
+/* --- Sidebar resize handle --- */
+#sidebar-resize-handle {
+  width: 4px;
+  flex-shrink: 0;
+  cursor: col-resize;
+  background: transparent;
+  transition: background 0.15s;
+  z-index: 10;
+  position: relative;
+}
+
+#sidebar-resize-handle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -2px;
+  width: 8px;
+}
+
+#sidebar-resize-handle:hover,
+#sidebar-resize-handle.dragging {
+  background: var(--accent);
+}
+
+/* Hide resize handle when sidebar is collapsed */
+#layout.sidebar-collapsed #sidebar-resize-handle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #sidebar-resize-handle {
+    display: none;
+  }
 }
 

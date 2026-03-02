@@ -138,7 +138,7 @@
 .paste-modal-body {
   margin: 0;
   padding: 16px 20px;
-  font-family: "SF Mono", Menlo, Monaco, monospace;
+  font-family: "DM Mono", monospace;
   font-size: 13px;
   line-height: 1.55;
   color: var(--text-secondary);
@@ -407,7 +407,7 @@
   color: var(--accent);
   font-weight: 600;
   font-size: 14px;
-  font-family: "SF Mono", Menlo, Monaco, monospace;
+  font-family: "DM Mono", monospace;
 }
 
 .slash-item .slash-desc {
@@ -446,7 +446,7 @@
     z-index: 100;
     transform: translateX(-100%);
     transition: transform 0.25s ease;
-    width: 260px;
+    width: 240px;
   }
 
   #sidebar.open {
@@ -455,7 +455,7 @@
 
   /* On mobile, sidebar-collapsed should not affect sidebar (hamburger controls it) */
   #layout.sidebar-collapsed #sidebar {
-    width: 260px;
+    width: 240px;
     border-right: 1px solid var(--border-subtle);
   }
 

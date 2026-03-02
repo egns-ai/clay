@@ -1,0 +1,270 @@
+/* ==========================================================================
+   Icon Strip — Discord-style vertical server/project bar
+   ========================================================================== */
+
+#icon-strip {
+  width: 72px;
+  flex-shrink: 0;
+  background: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 58px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* --- Home / App icon (top) --- */
+.icon-strip-home {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.icon-strip-home::before {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--bg-alt);
+  transition: background 0.2s ease;
+  z-index: -1;
+}
+
+.icon-strip-home:hover::before {
+  background: var(--accent);
+}
+
+.icon-strip-home .icon-strip-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.icon-strip-home:hover .footer-mascot {
+  opacity: 0.8;
+}
+
+.icon-strip-home.active::before {
+  background: var(--accent);
+}
+
+/* First separator aligns with title bar border (48px line) */
+.icon-strip-home + .icon-strip-separator {
+  margin-top: 0;
+}
+
+/* --- Pill indicator (left side, Discord-style white bar) --- */
+.icon-strip-pill {
+  position: absolute;
+  left: -12px;
+  width: 4px;
+  background: #fff;
+  border-radius: 0 4px 4px 0;
+  transition: height 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+  height: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Hover: short pill */
+.icon-strip-item:hover .icon-strip-pill {
+  opacity: 1;
+  height: 20px;
+}
+
+/* Active: tall pill */
+.icon-strip-item.active .icon-strip-pill {
+  opacity: 1;
+  height: 32px;
+}
+
+.icon-strip-home:hover .icon-strip-pill {
+  opacity: 1;
+  height: 20px;
+}
+
+.icon-strip-home.active .icon-strip-pill {
+  opacity: 1;
+  height: 32px;
+}
+
+/* --- Separator --- */
+.icon-strip-separator {
+  width: 32px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--border);
+  margin: 4px 0;
+  flex-shrink: 0;
+}
+
+/* --- Scrollable project list area --- */
+.icon-strip-projects {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+.icon-strip-projects::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Project icon item (48px hit-box, 38px visible bg) --- */
+.icon-strip-item {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  user-select: none;
+}
+
+.icon-strip-item::before {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--bg-alt);
+  transition: background 0.2s ease;
+  z-index: -1;
+}
+
+.icon-strip-item:hover::before {
+  background: var(--accent);
+}
+
+.icon-strip-item:hover {
+  color: #fff;
+}
+
+.icon-strip-item.active::before {
+  background: var(--accent);
+}
+
+.icon-strip-item.active {
+  color: #fff;
+}
+
+/* --- Processing indicator on icon --- */
+.icon-strip-item .icon-strip-processing {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--success);
+  border: 2px solid var(--sidebar-bg);
+}
+
+/* --- Add project button --- */
+.icon-strip-add {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: var(--success);
+  margin-top: 0;
+}
+
+.icon-strip-add::before {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--bg-alt);
+  transition: background 0.2s ease;
+  z-index: -1;
+}
+
+.icon-strip-add:hover::before {
+  background: var(--success);
+}
+
+.icon-strip-add:hover {
+  color: #fff;
+}
+
+.icon-strip-add .lucide {
+  width: 18px;
+  height: 18px;
+}
+
+/* --- Tooltip on hover --- */
+.icon-strip-tooltip {
+  position: fixed;
+  left: 76px;
+  background: var(--code-bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.1s, transform 0.1s;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(var(--shadow-rgb), 0.5);
+}
+
+.icon-strip-tooltip.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.icon-strip-tooltip::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: var(--code-bg);
+  border-left: none;
+}
+
+/* --- Mobile: hide icon strip --- */
+@media (max-width: 768px) {
+  #icon-strip {
+    display: none;
+  }
+}

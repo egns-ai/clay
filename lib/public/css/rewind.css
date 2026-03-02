@@ -418,7 +418,7 @@
 .permission-tool-desc {
   font-size: 13px;
   color: var(--text-muted);
-  font-family: "SF Mono", Menlo, Monaco, monospace;
+  font-family: "DM Mono", monospace;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -446,7 +446,7 @@
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 10px 12px;
-  font-family: "SF Mono", Menlo, Monaco, monospace;
+  font-family: "DM Mono", monospace;
   font-size: 12px;
   line-height: 1.5;
   color: var(--text-muted);
