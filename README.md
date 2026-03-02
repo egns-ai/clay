@@ -1,7 +1,7 @@
-# claude-relay
+# Clay
 
 <p align="center">
-  <img src="media/phone.gif" alt="claude-relay on phone" width="300">
+  <img src="media/phone.gif" alt="Clay on phone" width="300">
 </p>
 
 <h3 align="center">Web UI for Claude Code. Any device. Push notifications.</h3>

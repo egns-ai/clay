@@ -1,15 +1,15 @@
 {
-  "name": "claude-relay",
-  "version": "2.4.3",
+  "name": "clay-server",
+  "version": "3.0.0",
   "description": "Web UI for Claude Code. Any device. Push notifications.",
   "bin": {
-    "claude-relay": "./bin/cli.js",
-    "claude-relay-dev": "./bin/cli.js"
+    "clay-server": "./bin/cli.js",
+    "clay-dev": "./bin/cli.js"
   },
   "scripts": {
     "dev": "node bin/cli.js --dev",
-    "prepack": "npm pkg delete bin.claude-relay-dev",
-    "postpack": "npm pkg set bin.claude-relay-dev=./bin/cli.js"
+    "prepack": "npm pkg delete bin.clay-dev",
+    "postpack": "npm pkg set bin.clay-dev=./bin/cli.js"
   },
   "files": [
     "bin/",

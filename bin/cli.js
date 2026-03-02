@@ -8,9 +8,9 @@ var qrcode = require("qrcode-terminal");
 var net = require("net");
 
 // Detect dev mode before loading config (env must be set before require)
-var _isDev = (process.argv[1] && path.basename(process.argv[1]) === "claude-relay-dev") || process.argv.includes("--dev");
+var _isDev = (process.argv[1] && path.basename(process.argv[1]) === "clay-dev") || process.argv.includes("--dev");
 if (_isDev) {
-  process.env.CLAUDE_RELAY_HOME = path.join(os.homedir(), ".claude-relay-dev");
+  process.env.CLAY_HOME = path.join(os.homedir(), ".clay-dev");
 }
 
 var { loadConfig, saveConfig, configPath, socketPath, logPath, ensureConfigDir, isDaemonAlive, isDaemonAliveAsync, generateSlug, clearStaleConfig, loadClayrc, saveClayrc, readCrashInfo } = require("../lib/config");
@@ -56,7 +56,7 @@ for (var i = 0; i < args.length; i++) {
   } else if (args[i] === "--no-update" || args[i] === "--skip-update") {
     skipUpdate = true;
   } else if (args[i] === "--dev") {
-    // Already handled above for CLAUDE_RELAY_HOME, just skip
+    // Already handled above for CLAY_HOME, just skip
   } else if (args[i] === "--watch" || args[i] === "-w") {
     watchMode = true;
   } else if (args[i] === "--debug") {
@@ -82,10 +82,10 @@ for (var i = 0; i < args.length; i++) {
   } else if (args[i] === "--dangerously-skip-permissions") {
     dangerouslySkipPermissions = true;
   } else if (args[i] === "-h" || args[i] === "--help") {
-    console.log("Usage: claude-relay [-p|--port <port>] [--no-https] [--no-update] [--debug] [-y|--yes] [--pin <pin>] [--shutdown]");
-    console.log("       claude-relay --add <path>     Add a project to the running daemon");
-    console.log("       claude-relay --remove <path>  Remove a project from the running daemon");
-    console.log("       claude-relay --list            List registered projects");
+    console.log("Usage: clay-server [-p|--port <port>] [--no-https] [--no-update] [--debug] [-y|--yes] [--pin <pin>] [--shutdown]");
+    console.log("       clay-server --add <path>     Add a project to the running daemon");
+    console.log("       clay-server --remove <path>  Remove a project from the running daemon");
+    console.log("       clay-server --list            List registered projects");
     console.log("");
     console.log("Options:");
     console.log("  -p, --port <port>  Port to listen on (default: 2633)");
@@ -147,7 +147,7 @@ if (addPath !== null) {
   var addConfig = loadConfig();
   isDaemonAliveAsync(addConfig).then(function (alive) {
     if (!alive) {
-      console.error("No running daemon. Start with: npx claude-relay");
+      console.error("No running daemon. Start with: npx clay-server");
       process.exit(1);
     }
     sendIPCCommand(socketPath(), { cmd: "add_project", path: absAdd }).then(function (res) {
@@ -173,7 +173,7 @@ if (removePath !== null) {
   var removeConfig = loadConfig();
   isDaemonAliveAsync(removeConfig).then(function (alive) {
     if (!alive) {
-      console.error("No running daemon. Start with: npx claude-relay");
+      console.error("No running daemon. Start with: npx clay-server");
       process.exit(1);
     }
     sendIPCCommand(socketPath(), { cmd: "remove_project", path: absRemove }).then(function (res) {
@@ -194,7 +194,7 @@ if (listMode) {
   var listConfig = loadConfig();
   isDaemonAliveAsync(listConfig).then(function (alive) {
     if (!alive) {
-      console.error("No running daemon. Start with: npx claude-relay");
+      console.error("No running daemon. Start with: npx clay-server");
       process.exit(1);
     }
     sendIPCCommand(socketPath(), { cmd: "get_status" }).then(function (res) {
@@ -317,7 +317,7 @@ function onDaemonDied() {
     // Intentional shutdown, no restart
     log("");
     log(sym.warn + "  " + a.yellow + "Server has been shut down." + a.reset);
-    log(a.dim + "     Run " + a.reset + "npx claude-relay" + a.dim + " to start again." + a.reset);
+    log(a.dim + "     Run " + a.reset + "npx clay-server" + a.dim + " to start again." + a.reset);
     log("");
     process.exit(0);
     return;
@@ -400,7 +400,7 @@ async function restartDaemonFromConfig() {
     windowsHide: true,
     stdio: ["ignore", logFd, logFd],
     env: Object.assign({}, process.env, {
-      CLAUDE_RELAY_CONFIG: configPath(),
+      CLAY_CONFIG: configPath(),
     }),
   });
   child.unref();
@@ -494,7 +494,7 @@ function getAllIPs() {
 
 function ensureCerts(ip) {
   var homeDir = os.homedir();
-  var certDir = path.join(process.env.CLAUDE_RELAY_HOME || path.join(homeDir, ".claude-relay"), "certs");
+  var certDir = path.join(process.env.CLAY_HOME || path.join(homeDir, ".clay"), "certs");
   var keyPath = path.join(certDir, "key.pem");
   var certPath = path.join(certDir, "cert.pem");
 
@@ -1137,7 +1137,7 @@ function setup(callback) {
   console.clear();
   printLogo();
   log("");
-  log(sym.pointer + "  " + a.bold + "Claude Relay" + a.reset + a.dim + "  ·  Unofficial, open-source project" + a.reset);
+  log(sym.pointer + "  " + a.bold + "Clay" + a.reset + a.dim + "  ·  Unofficial, open-source project" + a.reset);
   log(sym.bar);
   log(sym.bar + "  " + a.dim + "Anyone with the URL gets full Claude Code access to this machine." + a.reset);
   log(sym.bar + "  " + a.dim + "Use a private network (Tailscale, VPN)." + a.reset);
@@ -1212,7 +1212,7 @@ async function forkDaemon(pin, keepAwake, extraProjects, addCwd) {
   var portFree = await isPortFree(port);
   if (!portFree) {
     log(a.red + "Port " + port + " is already in use." + a.reset);
-    log(a.dim + "Is another Claude Relay daemon running?" + a.reset);
+    log(a.dim + "Is another Clay daemon running?" + a.reset);
     process.exit(1);
     return;
   }
@@ -1263,7 +1263,7 @@ async function forkDaemon(pin, keepAwake, extraProjects, addCwd) {
     windowsHide: true,
     stdio: ["ignore", logFd, logFd],
     env: Object.assign({}, process.env, {
-      CLAUDE_RELAY_CONFIG: configPath(),
+      CLAY_CONFIG: configPath(),
     }),
   });
   child.unref();
@@ -1362,7 +1362,7 @@ async function devMode(pin, keepAwake, existingPinHash) {
     child = spawn(process.execPath, [daemonScript], {
       stdio: ["ignore", "inherit", "inherit"],
       env: Object.assign({}, process.env, {
-        CLAUDE_RELAY_CONFIG: configPath(),
+        CLAY_CONFIG: configPath(),
       }),
     });
 
@@ -1514,7 +1514,7 @@ async function restartDaemonWithTLS(config, callback) {
     windowsHide: true,
     stdio: ["ignore", logFd, logFd],
     env: Object.assign({}, process.env, {
-      CLAUDE_RELAY_CONFIG: configPath(),
+      CLAY_CONFIG: configPath(),
     }),
   });
   child.unref();
@@ -1540,7 +1540,7 @@ async function restartDaemonWithTLS(config, callback) {
       windowsHide: true,
       stdio: ["ignore", logFd2, logFd2],
       env: Object.assign({}, process.env, {
-        CLAUDE_RELAY_CONFIG: configPath(),
+        CLAY_CONFIG: configPath(),
       }),
     });
     child2.unref();
@@ -1591,7 +1591,7 @@ function showMainMenu(config, ip) {
 
     function afterQr() {
       // Status line
-      log("  " + a.dim + "claude-relay" + a.reset + " " + a.dim + "v" + currentVersion + a.reset + a.dim + " — " + url + a.reset);
+      log("  " + a.dim + "clay" + a.reset + " " + a.dim + "v" + currentVersion + a.reset + a.dim + " — " + url + a.reset);
       var parts = [];
       parts.push(a.bold + projs.length + a.reset + a.dim + (projs.length === 1 ? " project" : " projects"));
       parts.push(a.reset + a.bold + totalSessions + a.reset + a.dim + (totalSessions === 1 ? " session" : " sessions"));
@@ -1669,14 +1669,14 @@ function showMainMenu(config, ip) {
           case "exit":
             log("");
             log("  " + a.bold + "Bye!" + a.reset + "  " + a.dim + "Server is still running in background." + a.reset);
-            log("  " + a.dim + "Run " + a.reset + "npx claude-relay" + a.dim + " to come back here." + a.reset);
+            log("  " + a.dim + "Run " + a.reset + "npx clay-server" + a.dim + " to come back here." + a.reset);
             log("");
             process.exit(0);
             break;
         }
       }, {
         hint: [
-          "Run npx claude-relay in other directories to add more projects.",
+          "Run npx clay-server in other directories to add more projects.",
           "★ github.com/chadbyte/claude-relay — Press s to star the repo",
         ],
         keys: [

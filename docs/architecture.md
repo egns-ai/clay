@@ -1,6 +1,6 @@
 # Architecture
 
-claude-relay is not a CLI wrapper.
+Clay is not a CLI wrapper.
 It drives Claude Code directly via the [Claude Agent SDK](https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk).
 It is a local relay server that keeps the same execution model while streaming to the browser over WebSocket.
 
@@ -54,8 +54,8 @@ sequenceDiagram
 
 ```mermaid
 graph TB
-    CLI1["npx claude-relay<br/>(Terminal 1)"]
-    CLI2["npx claude-relay<br/>(Terminal 2)"]
+    CLI1["npx clay-server<br/>(Terminal 1)"]
+    CLI2["npx clay-server<br/>(Terminal 2)"]
     IPC["Unix Socket<br/>daemon.sock"]
     Daemon["Daemon Process<br/>lib/daemon.js"]
     HTTP["HTTP/WS Server<br/>:2633"]
@@ -90,7 +90,7 @@ The CLI spawns the daemon process with `detached: true`. The daemon keeps runnin
 
 ## Session Storage
 
-Sessions are stored at `.claude-relay/sessions/{cliSessionId}.jsonl` inside the project directory.
+Sessions are stored at `~/.clay/sessions/{encoded-cwd}/{cliSessionId}.jsonl`.
 
 ```
 Line 1:  {"type":"meta","localId":1,"cliSessionId":"...","title":"...","createdAt":...}
