@@ -2,6 +2,11 @@
 
 ## WIP
 
+## v2.4.3
+
+- Fix SDK failing to spawn Claude Code when daemon is started from within a Claude Code session (#161)
+  - Remove inherited `CLAUDECODE` env var to prevent "nested session" error
+
 ## v2.4.2
 
 - Fix skill discovery: merge global (`~/.claude/skills/`) and project (`.claude/skills/`) skills for slash menu (#160)
