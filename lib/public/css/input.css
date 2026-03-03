@@ -206,7 +206,7 @@
 
 #input-area {
   flex-shrink: 0;
-  padding: 8px 16px calc(var(--safe-bottom) + 12px);
+  padding: 8px 16px calc(var(--safe-bottom) + 8px);
 }
 
 #input-wrapper {

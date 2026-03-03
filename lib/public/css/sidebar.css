@@ -822,29 +822,33 @@
   opacity: 1;
 }
 
-/* --- Sidebar resize handle --- */
+/* --- Sidebar resize handle (overlay, no layout space) --- */
 #sidebar-resize-handle {
-  width: 4px;
-  flex-shrink: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  margin-left: -4px;
   cursor: col-resize;
-  background: transparent;
-  transition: background 0.15s;
   z-index: 10;
-  position: relative;
 }
 
-#sidebar-resize-handle::after {
+#sidebar-resize-handle::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -2px;
-  width: 8px;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
-#sidebar-resize-handle:hover,
-#sidebar-resize-handle.dragging {
-  background: var(--accent);
+#sidebar-resize-handle:hover::before,
+#sidebar-resize-handle.dragging::before {
+  opacity: 1;
 }
 
 /* Hide resize handle when sidebar is collapsed */

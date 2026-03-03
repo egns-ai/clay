@@ -83,9 +83,9 @@
             <div class="session-list-header">
               <span>Sessions</span>
               <div class="session-list-header-actions">
-                <button id="resume-session-btn" type="button" title="Resume a CLI session"><i data-lucide="terminal"></i></button>
-                <button id="new-session-btn" type="button" title="New session"><i data-lucide="plus"></i></button>
-                <button id="search-session-btn" type="button" title="Search sessions"><i data-lucide="search"></i></button>
+                <button id="new-session-btn" type="button" data-tip="New session"><i data-lucide="plus"></i></button>
+                <button id="resume-session-btn" type="button" data-tip="Import CLI session"><i data-lucide="import"></i></button>
+                <button id="search-session-btn" type="button" data-tip="Search sessions"><i data-lucide="search"></i></button>
               </div>
             </div>
             <div id="session-search" class="hidden">
@@ -292,7 +292,7 @@
       <button class="terminal-new-tab-btn" id="terminal-new-tab" title="New tab"><i data-lucide="plus"></i></button>
       <div class="terminal-header-actions">
         <button class="file-viewer-btn" id="terminal-fullscreen" title="Toggle fullscreen"><i data-lucide="maximize-2"></i></button>
-        <button class="file-viewer-btn" id="terminal-close" title="Hide panel"><i data-lucide="chevron-up"></i></button>
+        <button class="file-viewer-btn" id="terminal-close" title="Hide panel"><i data-lucide="minus"></i></button>
       </div>
     </div>
     <div id="terminal-toolbar" class="hidden">

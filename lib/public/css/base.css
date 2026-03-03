@@ -137,6 +137,7 @@ html, body {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  position: relative;
   background: var(--bg);
   border-top-left-radius: 8px;
   border-top: 1px solid var(--border-subtle);
