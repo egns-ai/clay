@@ -6,6 +6,14 @@
   - New 3D Clay logo for CLI and favicon
   - Favicon uses background-only fill swap instead of color overlay (dark mode support)
   - New Apple touch icons and PWA icons for light/dark mode
+  - Redesign CLI colors from Claude orange to Clay tri-accent palette
+  - Rename theme files and IDs from claude to clay
+- **Sticky notes**: drag, resize, color, markdown, and minimize support with server-side persistence
+  - Hide title in header when expanded, show only when minimized
+  - Re-clamp note positions on window resize so notes stay visible
+- **Mobile bottom tab bar**: fullscreen sheet overlays for chat, files, and terminal
+- **Hover action bar**: action buttons below user message bubbles with timestamp on hover
+- **Stream smoothing**: client-side character-by-character text delivery with requestAnimationFrame
 - **Server settings page**: full settings UI accessible from the web
   - All CLI settings available in-browser (PIN, port, keep awake, permissions, etc.)
   - Categorized navigation (General, Notifications, Security, Advanced)
@@ -16,7 +24,11 @@
   - Header info button always visible as filled icon next to chat title
   - Session info popover on info button click (model, usage, cost, session ID)
   - Hover tooltips on context usage bar
+  - Revise Clay Dark/Light themes with vibrant palette and UI refinements
+  - Secondary accent color system and revised Clay Light palette
+- **Typography**: replace default fonts with Pretendard and Roboto Mono
 - **Unified config chip**: replace model selector dropdown with compact chip showing model/mode/effort
+  - Add 1M context beta toggle to config chip popover
 - **Context overflow detection**: guided recovery CTA when context window is full
   - Accurate context window sizes with fallback mapping (Opus 4.6 = 1M tokens)
   - Context data restored on session switch without full history replay
@@ -24,23 +36,34 @@
 - **Rate limit handling**: replace inline rate limit cards with header popover
   - HDD-style socket LED indicator for connection status
   - Rate limit events and fast mode state tracking
+  - Add usage settings link to rate limit indicator pill
 - **Task progress tracking**: show sub-agent progress with stop button
 - **Prompt suggestion chips**: contextual suggestions appear after turn completion
 - **Plan approval enhancements**: clear context, auto-accept, and feedback input options
+  - Persist Implementation Plan card UI across new sessions
 - **Conflict detection**: warn when concurrent Claude processes target the same project; require Node 20+
 - **Rewind UX**: replace "click to rewind" on user messages with hover-visible rewind icon (positioned to the right)
 - **Panel fullscreen toggle**: maximize file browser or terminal to fill the main column (hides chat and title bar)
   - Toggle button in each panel header (maximize-2 / minimize-2 icon)
   - Hidden on mobile where panels are already full overlays
+- Consolidate consecutive thinking blocks and persist duration across sessions
+- Move todo sticky widget from floating overlay to title bar inline
 - Move "Resume CLI" button from Tools section to Sessions header
 - Remove project dashboard page; root URL now redirects to first project
 - Remove status/activity icon from title bar
+- Fix file browser and viewer not resetting on project switch (bfcache)
+- Fix permissionMode race condition on query start
+- Fix selected model not being passed to SDK query
+- Fix model switch not applying when no active query
+- Fix stale favicon blink and session processing state after clear context
+- Fix sidebar project name missing on load by caching in localStorage
 - Fix orphaned caffeinate process surviving after daemon exits (#164)
 - Fix plan card showing stale content after Edit-based revisions
 - Fix mobile sidebar taking space even when hidden (`!important` on collapsed width)
 - Fix mobile sidebar z-index and layout overflow issues
 - Fix mobile sidebar not appearing on hamburger tap
 - Fix context tracking on history prepend
+- UI polish: session buttons, tooltips, resize handle overlay, and minor fixes
 
 ## v2.4.3
 
