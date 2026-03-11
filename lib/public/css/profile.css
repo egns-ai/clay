@@ -1,0 +1,144 @@
+/* --- Profile Popover (Discord-style, above user island) --- */
+.profile-popover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  width: 280px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  animation: profile-popover-in 0.15s ease-out;
+}
+
+@keyframes profile-popover-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header / large avatar */
+.profile-popover-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.profile-popover-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.profile-popover-avatar-letter {
+  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Fields */
+.profile-field {
+  margin-bottom: 14px;
+}
+
+.profile-field:last-child {
+  margin-bottom: 0;
+}
+
+.profile-field-label {
+  display: block;
+  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-dimmer);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.profile-field-input {
+  width: 100%;
+  padding: 8px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.profile-field-input:focus {
+  border-color: var(--accent);
+}
+
+.profile-field-input::placeholder {
+  color: var(--text-dimmer);
+  font-style: italic;
+}
+
+/* Language grid */
+.profile-lang-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.profile-lang-btn {
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-secondary);
+  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.profile-lang-btn:hover {
+  background: var(--sidebar-hover);
+  color: var(--text);
+}
+
+.profile-lang-btn.profile-option-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* Color swatch grid */
+.profile-color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.profile-color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+  padding: 0;
+}
+
+.profile-color-swatch:hover {
+  transform: scale(1.15);
+}
+
+.profile-color-swatch.profile-color-active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--accent);
+}
