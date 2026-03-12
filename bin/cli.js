@@ -1345,6 +1345,15 @@ async function forkDaemon(pin, keepAwake, extraProjects, addCwd) {
   var allProjects = [];
   var usedSlugs = [];
 
+  // Load previous config to preserve per-project settings (visibility, allowedUsers)
+  var prevConfig = loadConfig();
+  var prevProjectMap = {};
+  if (prevConfig && prevConfig.projects) {
+    for (var pi = 0; pi < prevConfig.projects.length; pi++) {
+      prevProjectMap[prevConfig.projects[pi].path] = prevConfig.projects[pi];
+    }
+  }
+
   // Only include cwd if explicitly requested
   if (addCwd) {
     var slug = generateSlug(cwd, []);
@@ -1359,6 +1368,11 @@ async function forkDaemon(pin, keepAwake, extraProjects, addCwd) {
         break;
       }
     }
+    // Restore access settings from previous config
+    if (prevProjectMap[cwd]) {
+      if (prevProjectMap[cwd].visibility) cwdEntry.visibility = prevProjectMap[cwd].visibility;
+      if (prevProjectMap[cwd].allowedUsers) cwdEntry.allowedUsers = prevProjectMap[cwd].allowedUsers;
+    }
     allProjects.push(cwdEntry);
     usedSlugs.push(slug);
   }
@@ -1371,7 +1385,13 @@ async function forkDaemon(pin, keepAwake, extraProjects, addCwd) {
       if (!fs.existsSync(rp.path)) continue; // skip missing directories
       var rpSlug = generateSlug(rp.path, usedSlugs);
       usedSlugs.push(rpSlug);
-      allProjects.push({ path: rp.path, slug: rpSlug, title: rp.title || undefined, icon: rp.icon || undefined, addedAt: rp.addedAt || Date.now() });
+      var rpEntry = { path: rp.path, slug: rpSlug, title: rp.title || undefined, icon: rp.icon || undefined, addedAt: rp.addedAt || Date.now() };
+      // Restore access settings from previous config
+      if (prevProjectMap[rp.path]) {
+        if (prevProjectMap[rp.path].visibility) rpEntry.visibility = prevProjectMap[rp.path].visibility;
+        if (prevProjectMap[rp.path].allowedUsers) rpEntry.allowedUsers = prevProjectMap[rp.path].allowedUsers;
+      }
+      allProjects.push(rpEntry);
     }
   }
 
@@ -1462,6 +1482,15 @@ async function devMode(pin, keepAwake, existingPinHash) {
   var slug = generateSlug(cwd, []);
   var cwdDevEntry = { path: cwd, slug: slug, addedAt: Date.now() };
 
+  // Load previous config to preserve per-project settings (visibility, allowedUsers)
+  var prevDevConfig = loadConfig();
+  var prevDevProjectMap = {};
+  if (prevDevConfig && prevDevConfig.projects) {
+    for (var pdi = 0; pdi < prevDevConfig.projects.length; pdi++) {
+      prevDevProjectMap[prevDevConfig.projects[pdi].path] = prevDevConfig.projects[pdi];
+    }
+  }
+
   // Restore previous projects
   var rc = loadClayrc();
   var restorable = (rc.recentProjects || []).filter(function (p) {
@@ -1476,13 +1505,24 @@ async function devMode(pin, keepAwake, existingPinHash) {
       break;
     }
   }
+  // Restore access settings for cwd from previous config
+  if (prevDevProjectMap[cwd]) {
+    if (prevDevProjectMap[cwd].visibility) cwdDevEntry.visibility = prevDevProjectMap[cwd].visibility;
+    if (prevDevProjectMap[cwd].allowedUsers) cwdDevEntry.allowedUsers = prevDevProjectMap[cwd].allowedUsers;
+  }
   var allProjects = [cwdDevEntry];
   var usedSlugs = [slug];
   for (var ri = 0; ri < restorable.length; ri++) {
     var rp = restorable[ri];
     var rpSlug = generateSlug(rp.path, usedSlugs);
     usedSlugs.push(rpSlug);
-    allProjects.push({ path: rp.path, slug: rpSlug, title: rp.title || undefined, icon: rp.icon || undefined, addedAt: rp.addedAt || Date.now() });
+    var rpDevEntry = { path: rp.path, slug: rpSlug, title: rp.title || undefined, icon: rp.icon || undefined, addedAt: rp.addedAt || Date.now() };
+    // Restore access settings from previous config
+    if (prevDevProjectMap[rp.path]) {
+      if (prevDevProjectMap[rp.path].visibility) rpDevEntry.visibility = prevDevProjectMap[rp.path].visibility;
+      if (prevDevProjectMap[rp.path].allowedUsers) rpDevEntry.allowedUsers = prevDevProjectMap[rp.path].allowedUsers;
+    }
+    allProjects.push(rpDevEntry);
   }
 
   var config = {

@@ -23,14 +23,8 @@
 <div id="layout">
   <!-- === Top Bar (full width, forms reverse-ㄱ with icon strip) === -->
   <div id="top-bar">
-    <a href="https://github.com/chadbyte/clay" target="_blank" rel="noopener" class="top-bar-title"><img class="top-bar-icon" src="favicon-banded.png" width="16" height="16" alt="">Clay <span id="footer-version" class="footer-version"></span></a>
-    <div class="top-bar-actions">
-      <!-- Pill badges (formerly banners) -->
-      <div id="skip-perms-pill" class="top-bar-pill pill-error hidden"><i data-lucide="shield-off"></i> <span>Skip perms</span></div>
-      <div id="onboarding-pill" class="top-bar-pill pill-accent hidden">
-        <span class="onboarding-pill-text" id="onboarding-pill-text"></span>
-        <button id="onboarding-pill-close" class="pill-close" aria-label="Dismiss"><i data-lucide="x"></i></button>
-      </div>
+    <div class="top-bar-center">
+      <a href="https://github.com/chadbyte/clay" target="_blank" rel="noopener" class="top-bar-title"><img class="top-bar-icon" src="favicon-banded.png" width="16" height="16" alt="">Clay <span id="footer-version" class="footer-version"></span></a>
       <div id="update-pill-wrap" class="hidden">
         <button id="update-pill" class="top-bar-pill pill-success"><i data-lucide="arrow-up-circle"></i> <span id="update-version"></span></button>
         <div id="update-popover" class="top-bar-popover">
@@ -38,6 +32,14 @@
           <div class="popover-row"><div class="popover-label">Or run manually:</div><div class="popover-cmd"><code>npx clay-server@latest</code><button class="popover-copy" title="Copy"><i data-lucide="copy"></i></button></div></div>
         </div>
       </div>
+      <div id="onboarding-pill" class="top-bar-pill pill-accent hidden">
+        <span class="onboarding-pill-text" id="onboarding-pill-text"></span>
+        <button id="onboarding-pill-close" class="pill-close" aria-label="Dismiss"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div class="top-bar-actions">
+      <!-- Pill badges -->
+      <div id="skip-perms-pill" class="top-bar-pill pill-error hidden"><i data-lucide="shield-off"></i> <span>Skip perms</span></div>
       <span id="client-count" class="hidden"></span>
       <div id="debug-menu-wrap" class="hidden">
         <button id="debug-btn" title="Debug"><i data-lucide="bug"></i></button>
