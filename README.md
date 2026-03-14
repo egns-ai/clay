@@ -4,226 +4,226 @@
   <img src="media/phone.gif" alt="Clay on phone" width="300">
 </p>
 
-<h3 align="center">Web UI for Claude Code. Any device. Push notifications.</h3>
+<h3 align="center">A multi-user web UI for Claude Code, built on the Agent SDK.</h3>
 
-[![npm version](https://img.shields.io/npm/v/claude-relay)](https://www.npmjs.com/package/claude-relay) [![npm downloads](https://img.shields.io/npm/dw/claude-relay)](https://www.npmjs.com/package/claude-relay) [![GitHub stars](https://img.shields.io/github/stars/chadbyte/claude-relay)](https://github.com/chadbyte/claude-relay) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/chadbyte/claude-relay/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/clay-server)](https://www.npmjs.com/package/clay-server) [![npm downloads](https://img.shields.io/npm/dw/clay-server)](https://www.npmjs.com/package/clay-server) [![GitHub stars](https://img.shields.io/github/stars/chadbyte/clay)](https://github.com/chadbyte/clay) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/chadbyte/clay/blob/main/LICENSE)
 
-Claude Code. Anywhere.  
-Same session. Same files. Same machine.  
-Your files stay on your computer. Nothing leaves for the cloud.
+Clay extends Claude Code from a single-user CLI into a multi-user, multi-session web platform. It runs locally as a daemon, serves a browser UI over WebSocket, and lets non-technical teammates use Claude Code without touching the terminal.
 
-Pick up the same Claude Code session on your phone.  
-Start in the terminal, continue on your phone, switch back anytime.
-
-Claude Code is automating more of your editing and execution workflow.
-But when it needs approval or asks a question, it halts in the terminal. If you walk away, it just sits there waiting.
-
-claude-relay eliminates this bottleneck.
-It is not a thin wrapper that intercepts input/output. It drives Claude Code via the Claude Agent SDK and relays the stream from your local machine to your browser.
-
-Get approval notifications while grabbing a coffee.
-Continue working from the sofa on your iPad.
-Split your browser: claude-relay on one side, your app preview on the other, and watch the code change in real time.
+No relay server in the cloud. Your machine is the server. Zero install — one command:
 
 ```bash
-cd ~/your-project
-npx claude-relay
-# First run: Set Port/PIN -> Scan QR -> Connect
+npx clay-server
+# Scan the QR code to connect from any device
 ```
-
----
-
-## Never Miss an Approval
-
-When Claude Code requests permission before executing a tool, you get a notification on your phone.
-One tap, and Claude Code gets back to work.
-
-<p align="center">
-  <img src="media/push-notification.jpg" alt="push notification" width="300">
-</p>
-
-It works in browser tabs too. When input is awaited, the favicon blinks and the tab title changes to alert you.
-
-## Side by Side Workflow
-
-<p align="center">
-  <img src="media/split.gif" alt="split-screen workflow" width="700">
-</p>
-
-Keep claude-relay on one side and your localhost on the other.
-Watch the results update live while Claude Code fixes your source files.
-
-Mermaid diagrams render as diagrams, and tables appear as actual tables.
-You can explore files in the sidebar and use the built-in terminal to run shell commands.
-
-## All in One Place
-
-Run `npx claude-relay` in each project to register them to the same server.
-Manage all your active sessions from a single dashboard.
-
-```bash
-cd ~/projects/backend && npx claude-relay    # Register project
-cd ~/projects/frontend && npx claude-relay   # Adds to the same server
-```
-
-The server runs in the background. Even if you close the terminal window, your sessions and the server remain active.
 
 ---
 
 ## Getting Started
 
+**Requirements:** Node.js 20+, Claude Code CLI (authenticated).
+
 ```bash
-npx claude-relay
+npx clay-server
 ```
 
+On first run, it walks you through port and PIN setup.
+Scan the QR code to connect from your phone instantly.
+
+For remote access, use a VPN like Tailscale.
+
 <p align="center">
-  <img src="media/start.gif" alt="npx claude-relay" width="600">
+  <img src="media/start.gif" alt="Clay starting from CLI" width="600">
 </p>
 
-On the first run, you'll set a port and PIN to launch the server.
-Scan the QR code with your phone to connect instantly, or open the URL displayed in your terminal.
+---
+
+## Multi-session, multi-project
+
+Add a project in the browser and an agent attaches to it.
+Run backend, frontend, and docs simultaneously. Switch between them in the sidebar.
+
+The server runs as a background daemon. Sessions persist even after you close the terminal.
+
+Mermaid diagrams render as diagrams. Tables render as tables.
+Code blocks highlight 180+ languages.
+Browse project files in the file browser — changes reflect live while the agent works.
+
+<p align="center">
+  <img src="media/split.gif" alt="split-screen workflow" width="700">
+</p>
+
+---
+
+## Multi-user
+
+Invite teammates and give them access to a project. They talk to Claude Code directly in the browser — no terminal, no setup on their end.
+
+Add a CLAUDE.md and the AI operates within those rules: explains technical terms in plain language, escalates risky operations to seniors, summarizes changes in simple words.
+
+If someone gets stuck, join their session to unblock them in real time. Permissions can be separated per project and per session. Real-time presence shows who's where.
+
+---
+
+## Mobile & notifications
+
+Phone, tablet, couch. All you need is a browser.
+Pick up a terminal session in the browser. Continue a browser session from another device.
+One QR code to connect. Install as a PWA for a native-like experience.
+
+When Claude asks for approval, your phone buzzes. You also get notified on completion or error. No need to keep the browser open.
+
+<p align="center">
+  <img src="media/push-notification.jpg" alt="push notification" width="300">
+</p>
+
+---
+
+## Automation
+
+The scheduler kicks off agents at set times.
+Have it check open issues and submit PRs every morning at 8 AM.
+Or compile world news and email you a digest every day.
+
+Take it further with Ralph Loop — autonomous iteration built into Clay. Define a task (`PROMPT.md`) and success criteria (`JUDGE.md`), then start the loop. The agent works, commits, and a judge evaluates the git diff as PASS or FAIL. On FAIL, a fresh session starts over. Each iteration has **no memory of previous conversations** — only the code carries over. Based on [Geoffrey Huntley's Ralph Wiggum technique](https://ghuntley.com/loop/).
+
+---
+
+## Security & Privacy
+
+Clay turns your machine into the relay server. There is no intermediary server on the internet. No third-party service sits between your browser and your code.
+
+The best relay server to trust is the one that doesn't exist. Clay has none. Your data flows directly from your machine to the Anthropic API — exactly as it does when you use the CLI. No one intercepts, collects, or reroutes it. Clay adds a browser layer on top, not a middleman.
+
+PIN authentication, per-project/session permissions, and HTTPS are supported by default. For local network use, this is sufficient. For remote access, we recommend a VPN like Tailscale.
+
+---
+
+## Why Clay?
+
+*As of March 2026.*
+
+| | CLI + Remote Control | tmux | Desktop | Cowork | **Clay** |
+|---|---|---|---|---|---|
+| Multi-user | ❌ | ✅ | ❌ | ❌ | ✅ |
+| Mobile / PWA | ✅ | ➖ | ➖ | ➖ | ✅ |
+| Push notifications | 🟠 | ❌ | 🟠 | ❌ | ✅ |
+| GUI | 🟠 | ❌ | ✅ | ✅ | ✅ |
+| Scheduler (cron) | 🟠 | ❌ | ✅ | ✅ | ✅ |
+| Scheduler survives logout | ❌ | ➖ | 🟠 | 🟠 | ✅ |
+| Join teammate's session | ❌ | 🟠 | ❌ | ❌ | ✅ |
+
+✅ Supported · 🟠 Partial / limited · ❌ Not supported · ➖ N/A
+
+---
 
 ## Key Features
 
-* **Push Approvals** - Approve or reject from your phone while away, so Claude Code does not get stuck waiting.
-* **Multi Project Daemon** - Manage all projects via a single port. Add and remove projects from the browser.
-* **Usage and Model Switching** - View token usage, rate limit bars, and switch models from the browser.
-* **Session Search** - Full-text search across all session messages with hit timeline.
-* **Auto Session Logs (JSONL)** - Conversations and execution history are always saved locally. No data loss on crashes or restarts. Location: `./.claude-relay/sessions/`
-* **File Browser and Terminal** - Inspect files, execute commands, and manage multiple terminal tabs from the browser.
+* **Multi-user** - Accounts, invitations, per-project/session permissions, real-time presence.
+* **Multi-agent** - Parallel agents per project, sidebar switching.
+* **Push notifications** - Approval, completion, error. Native-like PWA experience.
+* **Scheduler** - Cron-based automatic agent execution.
+* **Ralph Loop** - Autonomous coding loop with PROMPT.md + JUDGE.md. Iterates until the judge says PASS.
+* **File browser** - File exploration, syntax highlighting, live reload.
+* **Built-in terminal** - Multi-tab terminal, mobile keyboard support.
+* **Session search** - Full-text search across all conversation history.
+* **Session persistence** - Survives crashes, restarts, and network drops.
 
-> Note: Session logs may contain prompts, outputs, and commands. Do not share this folder.
+---
 
-<details>
-<summary>View Full Feature List</summary>
+## FAQ
 
-**Notifications**
+**"Is this just a terminal wrapper?"**
+No. Clay runs on the Claude Agent SDK. It doesn't wrap terminal output. It communicates directly with the agent through the SDK.
 
-* **Push Notifications** - Approvals, completions, errors, and questions. Add to Home Screen (PWA) to receive notifications without opening the app. Behavior depends on OS and browser. Tested on iPhone (Home Screen PWA) and desktop Chrome.
-* **Favicon and Title Blinking** - Visual cues when input is awaited.
-* **Sound Alerts** - Supports browser notifications, desktop notifications, and audio alerts.
+**"Is it free? Open source?"**
+Free. MIT-licensed open source. All code is public.
 
-**Projects and Sessions**
+**"Do I need to install anything?"**
+No. `npx clay-server` runs it directly. No global install, no build step, no Docker. Node.js and Claude Code are the only prerequisites.
 
-* **Multi Project** - Single port management for all projects. Add and remove projects from the browser with path autocomplete.
-* **Project Names** - Custom names make it easy to distinguish tabs.
-* **Session Persistence** - Sessions survive server restarts, browser crashes, and network drops.
-* **Session Handoff** - Start in the terminal, continue on your phone, pass back to desktop. Browse and resume CLI sessions directly from the web UI.
-* **Session Search** - Full-text search across all session content with highlighted results and a rewind-style hit timeline.
-* **Rewind (Native Claude Code)** - Accessible directly from the browser UI.
-* **Draft Persistence** - Unsent messages are saved per session and restored when you switch back.
+**"Does my code leave my machine?"**
+The Clay server runs locally. Files stay local. Only Claude API calls go out, which is the same as using the CLI.
 
-**Rendering and Tools**
+**"Is it secure?"**
+PIN authentication, per-project/session permissions, and HTTPS are supported by default. See [Security & Privacy](#security--privacy) for details.
 
-* **Mermaid and Markdown** - Proper rendering for diagrams, tables, and code blocks.
-* **Syntax Highlighting** - Support for over 180 languages with copy buttons on every block.
-* **File Browser** - Sidebar navigation with file previews, markdown rendering, and live-reload on external changes.
-* **Built in Terminal** - Multi-tab terminal sessions with rename, reorder, and a mobile special-key toolbar.
-* **Slash Commands** - Execute standard Claude Code commands from the browser, with autocomplete.
-* **Usage Panel** - View token counts and rate limit progress bars via `/usage` command or header button.
-* **Model Switching** - Change the active model directly from the browser header.
-* **Plan Approval** - Review and approve Claude implementation plans from the browser UI.
+**"What OS does it run on?"**
+Windows, Linux, and macOS are all supported.
 
-**UI**
+**"Can I continue a CLI session?"**
+Yes. Pick up a CLI session in the browser, or continue a browser session in the CLI.
 
-* **Mobile Optimized** - Large approve and reject buttons. Behaves like a native app via PWA.
-* **Real time Sync** - All devices view the exact same session state.
-* **QR Code** - Scan to connect instantly.
-* **Image Paste and Camera** - Paste images from clipboard or attach photos directly from your camera.
-* **Send While Processing** - Queue messages without waiting for the current response to finish.
-* **Sticky Todo Overlay** - TodoWrite tasks float as a progress bar while you scroll through the conversation.
-* **Scroll Position Hold** - Reading earlier messages will not get interrupted by new content arriving.
-* **RTL Text Support** - Automatic bidirectional text rendering for Arabic, Hebrew, and other RTL languages.
+**"Does my existing CLAUDE.md work?"**
+Yes. If your project has a CLAUDE.md, it works in Clay as-is.
 
-**Server and Security**
+**"Can I use it as an app?"**
+PWA is supported. On mobile, tap the download icon in the top-left corner to open the PWA install guide. Once installed, it provides a native-like experience.
 
-* **Background Daemon** - Server persists even if the CLI is closed.
-* **Keep Awake** - Prevents macOS sleep to keep sessions alive. Configurable toggle.
-* **PIN Protection** - Restrict access with a 6 digit PIN.
-* **HTTPS** - Automatic certificate generation via mkcert.
-* **Zero Config** - Inherits your existing Claude Code configuration.
+**"Can I use the terminal on mobile?"**
+Yes. Clay provides a built-in terminal with mobile keyboard support.
 
-</details>
+**"Does each teammate need their own API key?"**
+No. Teammates share the Claude Code session logged in on the server. If needed, you can configure per-project environment variables to use different API keys.
 
-## Network
+**"Does it work with MCP servers?"**
+Yes. MCP configurations from the CLI carry over as-is.
 
-On the same Wi Fi, it just works. Open the URL shown in the terminal on any device.
+**"How do I update?"**
+Auto-update is supported. When a new version is available, apply it with one click.
 
-For remote access, [Tailscale](https://tailscale.com) is recommended. Install it on both devices and log in with the same account to connect via an encrypted tunnel without port forwarding. Free for personal use.
+**"Can I use other AI models besides Claude?"**
+Currently Clay is Claude Code only. Other model support is on the roadmap.
 
-## Security
+**"Can I run it in Docker?"**
+There's no official Docker image yet, but it can run in a container with a Node.js environment.
 
-claude-relay opens on your local network to allow access from other devices such as phones and tablets on the same Wi Fi.
-Setting a PIN is highly recommended.
-
-Anyone on your network with the URL and PIN can access the session. PIN protection can be enabled during the initial setup.
-
-Do not expose this directly to the public internet. Usage on public or shared networks is not recommended.
-For remote access, use [Tailscale](https://tailscale.com) or a VPN.
-
-Users are responsible for their network configuration and exposure scope.
+---
 
 ## HTTPS for Push
 
-Basic features work out of the box. Only push notifications require HTTPS.
+Everything works out of the box. Only push notifications require HTTPS.
 
-Set it up once using [mkcert](https://github.com/FiloSottile/mkcert):
+Set it up once with [mkcert](https://github.com/FiloSottile/mkcert):
 
 ```bash
 brew install mkcert
 mkcert -install
 ```
 
-Certificates are generated automatically. The setup wizard handles the rest.
+Certificates are auto-generated. The setup wizard handles the rest.
 
-If push registration fails: check whether your browser trusts HTTPS and whether your phone can access the address.
+If push registration fails: check that your browser trusts the HTTPS certificate and that your phone can reach the server address.
+
+---
 
 ## CLI Options
 
 ```bash
-npx claude-relay              # Default (port 2633)
-npx claude-relay -p 8080      # Specify port
-npx claude-relay --yes        # Skip interactive prompts (accept defaults)
-npx claude-relay -y --pin 123456
-                              # Non-interactive with PIN (for scripts/CI)
-npx claude-relay --no-https   # Disable HTTPS
-npx claude-relay --no-update  # Skip update check
-npx claude-relay --debug      # Enable debug panel
-npx claude-relay --add .      # Add current directory to running daemon
-npx claude-relay --add /path  # Add a project by path
-npx claude-relay --remove .   # Remove a project
-npx claude-relay --list       # List registered projects
-npx claude-relay --shutdown   # Stop the running daemon
-npx claude-relay --dangerously-skip-permissions
-                              # Bypass all permission prompts (PIN required during setup)
-npx claude-relay --dev        # Development mode (foreground, auto-restart on lib/ changes, port 2635)
+npx clay-server              # Default (port 2633)
+npx clay-server -p 8080      # Specify port
+npx clay-server --yes        # Skip interactive prompts (use defaults)
+npx clay-server -y --pin 123456
+                              # Non-interactive + PIN (for scripts/CI)
+npx clay-server --no-https   # Disable HTTPS
+npx clay-server --no-update  # Skip update check
+npx clay-server --debug      # Enable debug panel
+npx clay-server --add .      # Add current directory to running daemon
+npx clay-server --add /path  # Add project by path
+npx clay-server --remove .   # Remove project
+npx clay-server --list       # List registered projects
+npx clay-server --shutdown   # Stop running daemon
+npx clay-server --dangerously-skip-permissions
+                              # Bypass all permission prompts (requires PIN at setup)
+npx clay-server --dev        # Dev mode (foreground, auto-restart on lib/ changes, port 2635)
 ```
 
-## Requirements
-
-* [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed and authenticated
-* Node.js 18+
-* [mkcert](https://github.com/FiloSottile/mkcert) - For push notifications (optional)
-* [Tailscale](https://tailscale.com) - For remote access (optional)
-
-## Why claude-relay?
-
-**Why not just use tmux + Termius?**
-You can monitor the terminal remotely, but there are no push notifications and no way to approve permission requests without switching back to the terminal. On a phone, navigating a raw terminal session is clunky. You end up checking manually instead of getting notified, and the experience never feels native.
-
-**Why not just add hooks to send notifications?**
-Hooks with ntfy or Pushover can get you push notifications, but you still need shell scripts, config files, and third-party accounts just to get alerts. And once you get the notification, there is no UI to approve or reject from. You are back to opening a terminal. claude-relay gives you notifications, a one-tap approval UI, and a full web interface with a single command.
-
-**Why not use Claude Code Desktop?**
-The desktop app works great on your computer, but there is no mobile version. To access sessions from your phone, you need remote sessions on Anthropic's cloud, which requires pushing your code to GitHub first. claude-relay runs entirely on your machine and lets you connect from any device on your network.
-
-**Why not use Happy Coder?**
-Happy Coder requires installing a native app and routes through its own relay server with end-to-end encryption. claude-relay *is* the relay server, running on your machine. Open a URL and you are in. No app install, no signup, nothing leaves your network.
+---
 
 ## Architecture
 
-claude-relay is not a wrapper that intercepts standard input/output.
-It is a local relay server that drives Claude Code execution via the [Claude Agent SDK](https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk) and streams data to the browser via WebSocket.
+Clay is not a wrapper that intercepts stdio.
+It's a local relay server that drives Claude Code execution through the [Claude Agent SDK](https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk) and streams it to the browser over WebSocket.
 
 ```mermaid
 graph LR
@@ -244,39 +244,29 @@ graph LR
     Push -->|Notification| Browser
 ```
 
-For a detailed sequence diagram, daemon structure, and design decisions, refer to [docs/architecture.md](docs/architecture.md).
-
-## Star History
-
-<a href="https://star-history.com/#chadbyte/claude-relay&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=chadbyte/claude-relay&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=chadbyte/claude-relay&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=chadbyte/claude-relay&type=Date" width="600" />
- </picture>
-</a>
+For detailed sequence diagrams, daemon architecture, and design decisions, see [docs/architecture.md](docs/architecture.md).
 
 ---
 
 ## Contributors
 
-<a href="https://github.com/chadbyte/claude-relay/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=chadbyte/claude-relay" />
+<a href="https://github.com/chadbyte/clay/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=chadbyte/clay" />
 </a>
 
 ## Contributing
 
-Bug fixes and typos are welcome. For feature suggestions, please open an issue first:
-[https://github.com/chadbyte/claude-relay/issues](https://github.com/chadbyte/claude-relay/issues)
+Bug fixes and typo corrections are welcome. For feature suggestions, please open an issue first:
+[https://github.com/chadbyte/clay/issues](https://github.com/chadbyte/clay/issues)
 
-If you are using claude-relay, let us know how you are using it in Discussions:
-[https://github.com/chadbyte/claude-relay/discussions](https://github.com/chadbyte/claude-relay/discussions)
+If you're using Clay, let us know how in Discussions:
+[https://github.com/chadbyte/clay/discussions](https://github.com/chadbyte/clay/discussions)
 
 ## Disclaimer
 
 This is an independent project and is not affiliated with Anthropic. Claude is a trademark of Anthropic.
 
-Clay is provided "as is" without warranty of any kind. Users are responsible for ensuring their use of this software complies with all applicable terms of service of the underlying AI providers (e.g., Anthropic, OpenAI) and any other third-party services. Features such as multi-user mode are experimental and may involve sharing access to API-backed services — please review your provider's usage policies regarding account sharing, acceptable use, and any applicable rate limits or restrictions before enabling such features. The authors assume no liability for any misuse or violations arising from the use of this software.
+Clay is provided "as is" without warranty of any kind. Users are responsible for complying with the terms of service of underlying AI providers (e.g., Anthropic, OpenAI) and all applicable terms of any third-party services. Features such as multi-user mode are experimental and may involve sharing access to API-based services. Before enabling such features, review your provider's usage policies regarding account sharing, acceptable use, and any applicable rate limits or restrictions. The authors assume no liability for misuse or violations arising from the use of this software.
 
 ## License
 
