@@ -1,3 +1,10 @@
+# [2.10.0-beta.1](https://github.com/chadbyte/clay/compare/v2.9.4-beta.1...v2.10.0-beta.1) (2026-03-15)
+
+
+### Features
+
+* **ui:** show images inline when Claude reads image files ([#217](https://github.com/chadbyte/clay/issues/217)) ([d9c1cd5](https://github.com/chadbyte/clay/commit/d9c1cd54a2dba09c0477b02373e26dad10935c97)), closes [#216](https://github.com/chadbyte/clay/issues/216)
+
 ## [2.9.4-beta.1](https://github.com/chadbyte/clay/compare/v2.9.3...v2.9.4-beta.1) (2026-03-14)
 
 
