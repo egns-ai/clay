@@ -1,3 +1,10 @@
+# [2.11.0-beta.10](https://github.com/chadbyte/clay/compare/v2.11.0-beta.9...v2.11.0-beta.10) (2026-03-17)
+
+
+### Features
+
+* **terminal:** add clickable URLs, fix copy/paste, improve context menu ([c68ce14](https://github.com/chadbyte/clay/commit/c68ce1493d9b8a919a45e66aa0b48664ff951cd4))
+
 # [2.11.0-beta.9](https://github.com/chadbyte/clay/compare/v2.11.0-beta.8...v2.11.0-beta.9) (2026-03-17)
 
 
