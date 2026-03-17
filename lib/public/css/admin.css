@@ -607,6 +607,49 @@
   color: var(--accent);
 }
 
+/* --- Temp PIN display (admin-created user credentials) --- */
+.admin-temp-pin-box {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-top: 12px;
+}
+
+.admin-temp-pin-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.admin-temp-pin-row + .admin-temp-pin-row {
+  border-top: 1px solid var(--border);
+}
+
+.admin-temp-pin-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.admin-temp-pin-value {
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.admin-temp-pin-highlight {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--accent);
+}
+
 /* --- Session visibility indicator --- */
 .session-private-icon {
   display: inline-flex;
