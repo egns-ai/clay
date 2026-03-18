@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* --- Mic button --- */
-#stt-btn {
+.pane-stt-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -23,11 +23,11 @@
   flex-shrink: 0;
 }
 
-#stt-btn .lucide { width: 20px; height: 20px; flex-shrink: 0; }
-#stt-btn:hover { background: rgba(var(--overlay-rgb), 0.06); color: var(--text); }
+.pane-stt-btn .lucide { width: 20px; height: 20px; flex-shrink: 0; }
+.pane-stt-btn:hover { background: rgba(var(--overlay-rgb), 0.06); color: var(--text); }
 
 /* Recording active — pill shape */
-#stt-btn.stt-active {
+.pane-stt-btn.stt-active {
   width: auto;
   padding: 0 14px 0 10px;
   border-radius: 18px;
@@ -35,7 +35,7 @@
   background: #e53935;
 }
 
-#stt-btn.stt-active:hover {
+.pane-stt-btn.stt-active:hover {
   background: #c62828;
 }
 
@@ -75,7 +75,7 @@
 }
 
 /* Loading state */
-#stt-btn.stt-loading {
+.pane-stt-btn.stt-loading {
   pointer-events: none;
   opacity: 0.7;
 }

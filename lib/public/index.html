@@ -192,40 +192,48 @@
     </div>
     <div id="sidebar-resize-handle"></div>
     <div id="sidebar-overlay"></div>
-    <div id="main-column">
-      <div class="dm-header-bar" id="dm-header-bar">
-        <img id="dm-header-avatar" class="dm-header-avatar" alt="">
-        <span id="dm-header-name" class="dm-header-name"></span>
+    <div id="pane-layout" class="pane-layout pane-layout-1">
+    <div class="pane" data-pane-id="primary">
+      <div class="pane-header-bar">
+        <span class="pane-header-status-dot"></span>
+        <span class="pane-header-title-text">Session</span>
+        <button class="pane-split-h-btn" title="Split right"><i data-lucide="columns"></i></button>
+        <button class="pane-split-v-btn" title="Split down"><i data-lucide="rows"></i></button>
+        <button class="pane-close-btn" title="Close pane"><i data-lucide="x"></i></button>
+      </div>
+      <div class="dm-header-bar pane-dm-header-bar">
+        <img class="dm-header-avatar pane-dm-header-avatar" alt="">
+        <span class="dm-header-name pane-dm-header-name"></span>
       </div>
       <div class="title-bar-content">
-        <div id="header-left">
-          <button id="sidebar-expand-btn" title="Open sidebar"><i data-lucide="panel-left-open"></i></button>
-          <button id="hamburger-btn" aria-label="Toggle sidebar"><i data-lucide="menu"></i></button>
-          <span class="header-title" id="header-title">Connecting...</span>
-          <button id="header-info-btn" type="button" title="Session info"><i data-lucide="info"></i></button>
-          <button id="header-rename-btn" type="button" title="Rename session"><i data-lucide="pencil"></i></button>
+        <div class="pane-header-left">
+          <button class="pane-sidebar-expand-btn" title="Open sidebar"><i data-lucide="panel-left-open"></i></button>
+          <button class="pane-hamburger-btn" aria-label="Toggle sidebar"><i data-lucide="menu"></i></button>
+          <span class="header-title pane-header-title">Connecting...</span>
+          <button class="pane-header-info-btn" type="button" title="Session info"><i data-lucide="info"></i></button>
+          <button class="pane-header-rename-btn" type="button" title="Rename session"><i data-lucide="pencil"></i></button>
         </div>
-        <div id="todo-sticky" class="hidden"></div>
-        <div id="ralph-sticky" class="hidden"></div>
+        <div class="pane-todo-sticky hidden"></div>
+        <div class="pane-ralph-sticky hidden"></div>
         <div class="status">
-          <button id="sticky-notes-toggle-btn" title="Sticky notes"><i data-lucide="sticky-note"></i><span class="sticky-notes-count hidden"></span></button>
-          <button id="terminal-toggle-btn" title="Terminal"><i data-lucide="square-terminal"></i><span id="terminal-count" class="hidden"></span></button>
+          <button class="pane-sticky-notes-toggle-btn" title="Sticky notes"><i data-lucide="sticky-note"></i><span class="sticky-notes-count hidden"></span></button>
+          <button class="pane-terminal-toggle-btn" title="Terminal"><i data-lucide="square-terminal"></i><span class="pane-terminal-count hidden"></span></button>
         </div>
       </div>
-      <div id="main-panels">
-      <div id="app">
-        <div id="connect-overlay">
-      <canvas id="ascii-logo-canvas"></canvas>
-      <p id="connect-overlay-msg">Reconnecting to server…</p>
+      <div class="pane-main-panels">
+      <div class="pane-app">
+        <div class="pane-connect-overlay">
+      <canvas class="pane-ascii-logo-canvas"></canvas>
+      <p class="pane-connect-overlay-msg">Reconnecting to server…</p>
     </div>
-    <div id="sticky-notes-container" class="hidden"></div>
-    <div id="messages"></div>
+    <div class="pane-sticky-notes-container hidden"></div>
+    <div class="pane-messages"></div>
 
-    <div id="info-panels">
-      <div id="usage-panel" class="hidden">
+    <div class="pane-info-panels">
+      <div class="pane-usage-panel hidden">
         <div class="usage-panel-header">
           <span>Usage</span>
-          <button id="usage-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
+          <button class="pane-usage-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
         </div>
         <div class="usage-panel-body">
           <a href="https://claude.ai/settings/usage" target="_blank" rel="noopener" class="usage-external-link">
@@ -234,129 +242,129 @@
           </a>
           <div class="usage-divider"></div>
           <div class="usage-section-label">Session</div>
-          <div class="usage-row"><span class="usage-label">Cost</span><span id="usage-cost" class="usage-value">$0.0000</span></div>
-          <div class="usage-row"><span class="usage-label">Input tokens</span><span id="usage-input" class="usage-value">0</span></div>
-          <div class="usage-row"><span class="usage-label">Output tokens</span><span id="usage-output" class="usage-value">0</span></div>
-          <div class="usage-row"><span class="usage-label">Cache read</span><span id="usage-cache-read" class="usage-value">0</span></div>
-          <div class="usage-row"><span class="usage-label">Cache write</span><span id="usage-cache-write" class="usage-value">0</span></div>
-          <div class="usage-row"><span class="usage-label">Turns</span><span id="usage-turns" class="usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Cost</span><span class="pane-usage-cost usage-value">$0.0000</span></div>
+          <div class="usage-row"><span class="usage-label">Input tokens</span><span class="pane-usage-input usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Output tokens</span><span class="pane-usage-output usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Cache read</span><span class="pane-usage-cache-read usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Cache write</span><span class="pane-usage-cache-write usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Turns</span><span class="pane-usage-turns usage-value">0</span></div>
         </div>
       </div>
-      <div id="status-panel" class="hidden">
+      <div class="pane-status-panel hidden">
         <div class="usage-panel-header">
           <span>Status</span>
-          <button id="status-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
+          <button class="pane-status-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
         </div>
         <div class="usage-panel-body">
           <div class="usage-section-label">Process</div>
-          <div class="usage-row"><span class="usage-label">PID</span><span id="status-pid" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Uptime</span><span id="status-uptime" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">RSS Memory</span><span id="status-rss" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Heap Used</span><span id="status-heap-used" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Heap Total</span><span id="status-heap-total" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">External</span><span id="status-external" class="usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">PID</span><span class="pane-status-pid usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Uptime</span><span class="pane-status-uptime usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">RSS Memory</span><span class="pane-status-rss usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Heap Used</span><span class="pane-status-heap-used usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Heap Total</span><span class="pane-status-heap-total usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">External</span><span class="pane-status-external usage-value">-</span></div>
           <div class="usage-divider"></div>
           <div class="usage-section-label">Sessions</div>
-          <div class="usage-row"><span class="usage-label">Active</span><span id="status-sessions" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Processing</span><span id="status-processing" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Clients</span><span id="status-clients" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Terminals</span><span id="status-terminals" class="usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Active</span><span class="pane-status-sessions usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Processing</span><span class="pane-status-processing usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Clients</span><span class="pane-status-clients usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Terminals</span><span class="pane-status-terminals usage-value">-</span></div>
         </div>
       </div>
-      <div id="context-panel" class="hidden">
+      <div class="pane-context-panel hidden">
         <div class="usage-panel-header">
           <span>Context</span>
           <div class="usage-panel-actions">
-            <button id="context-panel-minimize" aria-label="Minimize" title="Minimize to input"><i data-lucide="minus"></i></button>
-            <button id="context-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
+            <button class="pane-context-panel-minimize" aria-label="Minimize" title="Minimize to input"><i data-lucide="minus"></i></button>
+            <button class="pane-context-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
           </div>
         </div>
         <div class="usage-panel-body">
           <div class="usage-section-label">Context Window</div>
           <div class="context-bar-wrap">
             <div class="context-bar">
-              <div class="context-bar-fill" id="context-bar-fill"></div>
+              <div class="context-bar-fill pane-context-bar-fill"></div>
             </div>
-            <span class="context-bar-pct" id="context-bar-pct">0%</span>
+            <span class="context-bar-pct pane-context-bar-pct">0%</span>
           </div>
-          <div class="usage-row"><span class="usage-label">Used</span><span id="context-used" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Window</span><span id="context-window" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Max output</span><span id="context-max-output" class="usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Used</span><span class="pane-context-used usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Window</span><span class="pane-context-window usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Max output</span><span class="pane-context-max-output usage-value">-</span></div>
           <div class="usage-divider"></div>
           <div class="usage-section-label">Session Tokens</div>
-          <div class="usage-row"><span class="usage-label">Input</span><span id="context-input" class="usage-value">0</span></div>
-          <div class="usage-row"><span class="usage-label">Output</span><span id="context-output" class="usage-value">0</span></div>
-          <div class="usage-row"><span class="usage-label">Cache read</span><span id="context-cache-read" class="usage-value">0</span></div>
-          <div class="usage-row"><span class="usage-label">Cache write</span><span id="context-cache-write" class="usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Input</span><span class="pane-context-input usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Output</span><span class="pane-context-output usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Cache read</span><span class="pane-context-cache-read usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Cache write</span><span class="pane-context-cache-write usage-value">0</span></div>
           <div class="usage-divider"></div>
           <div class="usage-section-label">Model</div>
-          <div class="usage-row"><span class="usage-label">Name</span><span id="context-model" class="usage-value">-</span></div>
-          <div class="usage-row"><span class="usage-label">Cost</span><span id="context-cost" class="usage-value">$0.0000</span></div>
-          <div class="usage-row"><span class="usage-label">Turns</span><span id="context-turns" class="usage-value">0</span></div>
+          <div class="usage-row"><span class="usage-label">Name</span><span class="pane-context-model usage-value">-</span></div>
+          <div class="usage-row"><span class="usage-label">Cost</span><span class="pane-context-cost usage-value">$0.0000</span></div>
+          <div class="usage-row"><span class="usage-label">Turns</span><span class="pane-context-turns usage-value">0</span></div>
         </div>
       </div>
     </div>
-    <button id="new-msg-btn" class="hidden" aria-label="Scroll to bottom"></button>
-    <div id="input-area">
-      <div id="input-wrapper">
-        <div id="slash-menu"></div>
-        <div id="suggestion-chips" class="hidden"></div>
-        <div id="input-row">
-          <div id="context-mini" class="hidden">
+    <button class="pane-new-msg-btn hidden" aria-label="Scroll to bottom"></button>
+    <div class="pane-input-area">
+      <div class="pane-input-wrapper">
+        <div class="pane-slash-menu"></div>
+        <div class="pane-suggestion-chips hidden"></div>
+        <div class="pane-input-row">
+          <div class="pane-context-mini hidden">
             <div class="context-mini-bar">
-              <div class="context-mini-fill" id="context-mini-fill"></div>
+              <div class="context-mini-fill pane-context-mini-fill"></div>
             </div>
-            <span class="context-mini-label" id="context-mini-label">0%</span>
+            <span class="context-mini-label pane-context-mini-label">0%</span>
           </div>
-          <div id="image-preview-bar"></div>
-          <textarea id="input" rows="1" placeholder="Message Claude Code..." enterkeyhint="send" dir="auto"></textarea>
-          <div id="input-bottom">
-            <div id="attach-wrap">
-              <button id="attach-file-btn" type="button" aria-label="Attach file" title="Attach file"><i data-lucide="paperclip"></i></button>
-              <button id="attach-image-btn" type="button" aria-label="Attach image" title="Attach image"><i data-lucide="image"></i></button>
-              <button id="stt-btn" type="button" aria-label="Voice input" title="Voice input"><i data-lucide="mic"></i></button>
+          <div class="pane-image-preview-bar"></div>
+          <textarea class="pane-input" rows="1" placeholder="Message Claude Code..." enterkeyhint="send" dir="auto"></textarea>
+          <div class="pane-input-bottom">
+            <div class="pane-attach-wrap">
+              <button class="pane-attach-file-btn" type="button" aria-label="Attach file" title="Attach file"><i data-lucide="paperclip"></i></button>
+              <button class="pane-attach-image-btn" type="button" aria-label="Attach image" title="Attach image"><i data-lucide="image"></i></button>
+              <button class="pane-stt-btn" type="button" aria-label="Voice input" title="Voice input"><i data-lucide="mic"></i></button>
             </div>
-            <div id="input-bottom-right">
-              <div id="config-chip-wrap" class="hidden">
-                <button id="config-chip" title="Model, mode, and effort settings">
+            <div class="pane-input-bottom-right">
+              <div class="pane-config-chip-wrap hidden">
+                <button class="pane-config-chip" title="Model, mode, and effort settings">
                   <i class="config-chip-icon" data-lucide="sliders-horizontal"></i>
-                  <span id="config-chip-label"></span>
+                  <span class="pane-config-chip-label"></span>
                   <i data-lucide="chevron-down"></i>
                 </button>
-                <div id="config-popover" class="hidden">
+                <div class="pane-config-popover hidden">
                   <div class="config-section">
                     <div class="config-section-label">MODEL</div>
-                    <div id="config-model-list" class="config-radio-list"></div>
+                    <div class="pane-config-model-list config-radio-list"></div>
                   </div>
                   <div class="config-section">
                     <div class="config-section-label">MODE</div>
-                    <div id="config-mode-list" class="config-radio-list"></div>
+                    <div class="pane-config-mode-list config-radio-list"></div>
                   </div>
-                  <div id="config-effort-section" class="config-section">
+                  <div class="pane-config-effort-section config-section">
                     <div class="config-section-label">EFFORT</div>
-                    <div id="config-effort-bar" class="config-segmented"></div>
+                    <div class="pane-config-effort-bar config-segmented"></div>
                   </div>
-                  <div id="config-thinking-section" class="config-section">
+                  <div class="pane-config-thinking-section config-section">
                     <div class="config-section-label">THINKING</div>
-                    <div id="config-thinking-bar" class="config-segmented"></div>
-                    <div id="config-thinking-budget-row" class="config-budget-row" style="display:none">
+                    <div class="pane-config-thinking-bar config-segmented"></div>
+                    <div class="pane-config-thinking-budget-row config-budget-row" style="display:none">
                       <label class="config-budget-label">Budget tokens</label>
-                      <input id="config-thinking-budget" type="number" class="config-budget-input"
+                      <input class="pane-config-thinking-budget config-budget-input" type="number"
                              min="1024" max="128000" step="1024" value="10000">
                     </div>
                   </div>
-                  <div id="config-beta-section" class="config-section" style="display:none">
+                  <div class="pane-config-beta-section config-section" style="display:none">
                     <div class="config-section-label">BETA</div>
                     <div class="config-toggle-row">
                       <span class="config-toggle-label">1M Context</span>
-                      <button id="config-beta-1m" class="config-toggle-btn" role="switch" aria-checked="false">
+                      <button class="pane-config-beta-1m config-toggle-btn" role="switch" aria-checked="false">
                         <span class="config-toggle-knob"></span>
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <button id="send-btn" disabled aria-label="Send"><i data-lucide="arrow-up"></i></button>
+              <button class="pane-send-btn" disabled aria-label="Send"><i data-lucide="arrow-up"></i></button>
             </div>
           </div>
         </div>
@@ -385,17 +393,17 @@
     <button class="mobile-tab" data-tab="terminal"><i data-lucide="square-terminal"></i><span id="mobile-terminal-count" class="mobile-tab-badge hidden"></span><span class="mobile-tab-label">Terminal</span></button>
   </div>
 
-  <div id="file-viewer" class="hidden">
+  <div class="pane-file-viewer hidden">
     <div class="file-viewer-header">
-      <span class="file-viewer-path" id="file-viewer-path"></span>
-      <button class="file-viewer-btn hidden" id="file-viewer-render" title="Toggle rendered view"><i data-lucide="book-open"></i></button>
-      <button class="file-viewer-btn hidden" id="file-viewer-pdf" title="Export PDF"><i data-lucide="file-down"></i></button>
-      <button class="file-viewer-btn hidden" id="file-viewer-history" title="Edit history"><i data-lucide="clock"></i></button>
-      <button class="file-viewer-btn" id="file-viewer-copy" title="Copy contents"><i data-lucide="copy"></i></button>
-      <button class="file-viewer-btn" id="file-viewer-fullscreen" title="Toggle fullscreen"><i data-lucide="maximize-2"></i></button>
-      <button class="file-viewer-btn" id="file-viewer-close" title="Close"><i data-lucide="x"></i></button>
+      <span class="file-viewer-path pane-file-viewer-path"></span>
+      <button class="file-viewer-btn pane-file-viewer-render hidden" title="Toggle rendered view"><i data-lucide="book-open"></i></button>
+      <button class="file-viewer-btn pane-file-viewer-pdf hidden" title="Export PDF"><i data-lucide="file-down"></i></button>
+      <button class="file-viewer-btn pane-file-viewer-history hidden" title="Edit history"><i data-lucide="clock"></i></button>
+      <button class="file-viewer-btn pane-file-viewer-copy" title="Copy contents"><i data-lucide="copy"></i></button>
+      <button class="file-viewer-btn pane-file-viewer-fullscreen" title="Toggle fullscreen"><i data-lucide="maximize-2"></i></button>
+      <button class="file-viewer-btn pane-file-viewer-close" title="Close"><i data-lucide="x"></i></button>
     </div>
-    <div class="file-viewer-body" id="file-viewer-body"></div>
+    <div class="file-viewer-body pane-file-viewer-body"></div>
   </div>
   <div id="project-settings" class="hidden panel-fullscreen">
     <div class="project-settings-layout">
@@ -539,16 +547,16 @@
       </div>
     </div>
   </div>
-  <div id="terminal-container" class="hidden">
+  <div class="pane-terminal-container hidden">
     <div class="terminal-header">
-      <div id="terminal-tabs" class="terminal-tabs"></div>
-      <button class="terminal-new-tab-btn" id="terminal-new-tab" title="New tab"><i data-lucide="plus"></i></button>
+      <div class="pane-terminal-tabs terminal-tabs"></div>
+      <button class="terminal-new-tab-btn pane-terminal-new-tab" title="New tab"><i data-lucide="plus"></i></button>
       <div class="terminal-header-actions">
-        <button class="file-viewer-btn" id="terminal-fullscreen" title="Toggle fullscreen"><i data-lucide="maximize-2"></i></button>
-        <button class="file-viewer-btn" id="terminal-close" title="Hide panel"><i data-lucide="minus"></i></button>
+        <button class="file-viewer-btn pane-terminal-fullscreen" title="Toggle fullscreen"><i data-lucide="maximize-2"></i></button>
+        <button class="file-viewer-btn pane-terminal-close" title="Hide panel"><i data-lucide="minus"></i></button>
       </div>
     </div>
-    <div id="terminal-toolbar" class="hidden">
+    <div class="pane-terminal-toolbar hidden">
       <button class="term-key" data-key="tab">Tab</button>
       <button class="term-key term-key-toggle" data-key="ctrl">Ctrl</button>
       <button class="term-key" data-key="esc">Esc</button>
@@ -558,10 +566,228 @@
       <button class="term-key term-key-arrow" data-key="left">&#9664;</button>
       <button class="term-key term-key-arrow" data-key="right">&#9654;</button>
     </div>
-    <div id="terminal-body"></div>
+    <div class="pane-terminal-body"></div>
   </div>
-  </div><!-- /main-panels -->
-  </div><!-- /main-column -->
+  </div><!-- /pane-main-panels -->
+  </div><!-- /pane -->
+
+  <template id="pane-template">
+    <div class="pane" data-pane-id="">
+      <div class="pane-header-bar">
+        <span class="pane-header-status-dot"></span>
+        <span class="pane-header-title-text">Session</span>
+        <button class="pane-split-h-btn" title="Split right"><i data-lucide="columns"></i></button>
+        <button class="pane-split-v-btn" title="Split down"><i data-lucide="rows"></i></button>
+        <button class="pane-close-btn" title="Close pane"><i data-lucide="x"></i></button>
+      </div>
+      <div class="dm-header-bar pane-dm-header-bar">
+        <img class="dm-header-avatar pane-dm-header-avatar" alt="">
+        <span class="dm-header-name pane-dm-header-name"></span>
+      </div>
+      <div class="title-bar-content">
+        <div class="pane-header-left">
+          <button class="pane-sidebar-expand-btn" title="Open sidebar"><i data-lucide="panel-left-open"></i></button>
+          <button class="pane-hamburger-btn" aria-label="Toggle sidebar"><i data-lucide="menu"></i></button>
+          <span class="header-title pane-header-title">Connecting...</span>
+          <button class="pane-header-info-btn" type="button" title="Session info"><i data-lucide="info"></i></button>
+          <button class="pane-header-rename-btn" type="button" title="Rename session"><i data-lucide="pencil"></i></button>
+        </div>
+        <div class="pane-todo-sticky hidden"></div>
+        <div class="pane-ralph-sticky hidden"></div>
+        <div class="status">
+          <button class="pane-sticky-notes-toggle-btn" title="Sticky notes"><i data-lucide="sticky-note"></i><span class="sticky-notes-count hidden"></span></button>
+          <button class="pane-terminal-toggle-btn" title="Terminal"><i data-lucide="square-terminal"></i><span class="pane-terminal-count hidden"></span></button>
+        </div>
+      </div>
+      <div class="pane-main-panels">
+      <div class="pane-app">
+        <div class="pane-connect-overlay">
+          <canvas class="pane-ascii-logo-canvas"></canvas>
+          <p class="pane-connect-overlay-msg">Reconnecting to server…</p>
+        </div>
+        <div class="pane-sticky-notes-container hidden"></div>
+        <div class="pane-messages"></div>
+
+        <div class="pane-info-panels">
+          <div class="pane-usage-panel hidden">
+            <div class="usage-panel-header">
+              <span>Usage</span>
+              <button class="pane-usage-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
+            </div>
+            <div class="usage-panel-body">
+              <a href="https://claude.ai/settings/usage" target="_blank" rel="noopener" class="usage-external-link">
+                <span>Check plan usage on claude.ai</span>
+                <i data-lucide="external-link"></i>
+              </a>
+              <div class="usage-divider"></div>
+              <div class="usage-section-label">Session</div>
+              <div class="usage-row"><span class="usage-label">Cost</span><span class="pane-usage-cost usage-value">$0.0000</span></div>
+              <div class="usage-row"><span class="usage-label">Input tokens</span><span class="pane-usage-input usage-value">0</span></div>
+              <div class="usage-row"><span class="usage-label">Output tokens</span><span class="pane-usage-output usage-value">0</span></div>
+              <div class="usage-row"><span class="usage-label">Cache read</span><span class="pane-usage-cache-read usage-value">0</span></div>
+              <div class="usage-row"><span class="usage-label">Cache write</span><span class="pane-usage-cache-write usage-value">0</span></div>
+              <div class="usage-row"><span class="usage-label">Turns</span><span class="pane-usage-turns usage-value">0</span></div>
+            </div>
+          </div>
+          <div class="pane-status-panel hidden">
+            <div class="usage-panel-header">
+              <span>Status</span>
+              <button class="pane-status-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
+            </div>
+            <div class="usage-panel-body">
+              <div class="usage-section-label">Process</div>
+              <div class="usage-row"><span class="usage-label">PID</span><span class="pane-status-pid usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Uptime</span><span class="pane-status-uptime usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">RSS Memory</span><span class="pane-status-rss usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Heap Used</span><span class="pane-status-heap-used usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Heap Total</span><span class="pane-status-heap-total usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">External</span><span class="pane-status-external usage-value">-</span></div>
+              <div class="usage-divider"></div>
+              <div class="usage-section-label">Sessions</div>
+              <div class="usage-row"><span class="usage-label">Active</span><span class="pane-status-sessions usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Processing</span><span class="pane-status-processing usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Clients</span><span class="pane-status-clients usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Terminals</span><span class="pane-status-terminals usage-value">-</span></div>
+            </div>
+          </div>
+          <div class="pane-context-panel hidden">
+            <div class="usage-panel-header">
+              <span>Context</span>
+              <div class="usage-panel-actions">
+                <button class="pane-context-panel-minimize" aria-label="Minimize" title="Minimize to input"><i data-lucide="minus"></i></button>
+                <button class="pane-context-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
+              </div>
+            </div>
+            <div class="usage-panel-body">
+              <div class="usage-section-label">Context Window</div>
+              <div class="context-bar-wrap">
+                <div class="context-bar">
+                  <div class="context-bar-fill pane-context-bar-fill"></div>
+                </div>
+                <span class="context-bar-pct pane-context-bar-pct">0%</span>
+              </div>
+              <div class="usage-row"><span class="usage-label">Used</span><span class="pane-context-used usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Window</span><span class="pane-context-window usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Max output</span><span class="pane-context-max-output usage-value">-</span></div>
+              <div class="usage-divider"></div>
+              <div class="usage-section-label">Session Tokens</div>
+              <div class="usage-row"><span class="usage-label">Input</span><span class="pane-context-input usage-value">0</span></div>
+              <div class="usage-row"><span class="usage-label">Output</span><span class="pane-context-output usage-value">0</span></div>
+              <div class="usage-row"><span class="usage-label">Cache read</span><span class="pane-context-cache-read usage-value">0</span></div>
+              <div class="usage-row"><span class="usage-label">Cache write</span><span class="pane-context-cache-write usage-value">0</span></div>
+              <div class="usage-divider"></div>
+              <div class="usage-section-label">Model</div>
+              <div class="usage-row"><span class="usage-label">Name</span><span class="pane-context-model usage-value">-</span></div>
+              <div class="usage-row"><span class="usage-label">Cost</span><span class="pane-context-cost usage-value">$0.0000</span></div>
+              <div class="usage-row"><span class="usage-label">Turns</span><span class="pane-context-turns usage-value">0</span></div>
+            </div>
+          </div>
+        </div>
+        <button class="pane-new-msg-btn hidden" aria-label="Scroll to bottom"></button>
+        <div class="pane-input-area">
+          <div class="pane-input-wrapper">
+            <div class="pane-slash-menu"></div>
+            <div class="pane-suggestion-chips hidden"></div>
+            <div class="pane-input-row">
+              <div class="pane-context-mini hidden">
+                <div class="context-mini-bar">
+                  <div class="context-mini-fill pane-context-mini-fill"></div>
+                </div>
+                <span class="context-mini-label pane-context-mini-label">0%</span>
+              </div>
+              <div class="pane-image-preview-bar"></div>
+              <textarea class="pane-input" rows="1" placeholder="Message Claude Code..." enterkeyhint="send" dir="auto"></textarea>
+              <div class="pane-input-bottom">
+                <div class="pane-attach-wrap">
+                  <button class="pane-attach-file-btn" type="button" aria-label="Attach file" title="Attach file"><i data-lucide="paperclip"></i></button>
+                  <button class="pane-attach-image-btn" type="button" aria-label="Attach image" title="Attach image"><i data-lucide="image"></i></button>
+                  <button class="pane-stt-btn" type="button" aria-label="Voice input" title="Voice input"><i data-lucide="mic"></i></button>
+                </div>
+                <div class="pane-input-bottom-right">
+                  <div class="pane-config-chip-wrap hidden">
+                    <button class="pane-config-chip" title="Model, mode, and effort settings">
+                      <i class="config-chip-icon" data-lucide="sliders-horizontal"></i>
+                      <span class="pane-config-chip-label"></span>
+                      <i data-lucide="chevron-down"></i>
+                    </button>
+                    <div class="pane-config-popover hidden">
+                      <div class="config-section">
+                        <div class="config-section-label">MODEL</div>
+                        <div class="pane-config-model-list config-radio-list"></div>
+                      </div>
+                      <div class="config-section">
+                        <div class="config-section-label">MODE</div>
+                        <div class="pane-config-mode-list config-radio-list"></div>
+                      </div>
+                      <div class="pane-config-effort-section config-section">
+                        <div class="config-section-label">EFFORT</div>
+                        <div class="pane-config-effort-bar config-segmented"></div>
+                      </div>
+                      <div class="pane-config-thinking-section config-section">
+                        <div class="config-section-label">THINKING</div>
+                        <div class="pane-config-thinking-bar config-segmented"></div>
+                        <div class="pane-config-thinking-budget-row config-budget-row" style="display:none">
+                          <label class="config-budget-label">Budget tokens</label>
+                          <input class="pane-config-thinking-budget config-budget-input" type="number"
+                                 min="1024" max="128000" step="1024" value="10000">
+                        </div>
+                      </div>
+                      <div class="pane-config-beta-section config-section" style="display:none">
+                        <div class="config-section-label">BETA</div>
+                        <div class="config-toggle-row">
+                          <span class="config-toggle-label">1M Context</span>
+                          <button class="pane-config-beta-1m config-toggle-btn" role="switch" aria-checked="false">
+                            <span class="config-toggle-knob"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="pane-send-btn" disabled aria-label="Send"><i data-lucide="arrow-up"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pane-file-viewer hidden">
+        <div class="file-viewer-header">
+          <span class="file-viewer-path pane-file-viewer-path"></span>
+          <button class="file-viewer-btn pane-file-viewer-render hidden" title="Toggle rendered view"><i data-lucide="book-open"></i></button>
+          <button class="file-viewer-btn pane-file-viewer-pdf hidden" title="Export PDF"><i data-lucide="file-down"></i></button>
+          <button class="file-viewer-btn pane-file-viewer-history hidden" title="Edit history"><i data-lucide="clock"></i></button>
+          <button class="file-viewer-btn pane-file-viewer-copy" title="Copy contents"><i data-lucide="copy"></i></button>
+          <button class="file-viewer-btn pane-file-viewer-fullscreen" title="Toggle fullscreen"><i data-lucide="maximize-2"></i></button>
+          <button class="file-viewer-btn pane-file-viewer-close" title="Close"><i data-lucide="x"></i></button>
+        </div>
+        <div class="file-viewer-body pane-file-viewer-body"></div>
+      </div>
+      <div class="pane-terminal-container hidden">
+        <div class="terminal-header">
+          <div class="pane-terminal-tabs terminal-tabs"></div>
+          <button class="terminal-new-tab-btn pane-terminal-new-tab" title="New tab"><i data-lucide="plus"></i></button>
+          <div class="terminal-header-actions">
+            <button class="file-viewer-btn pane-terminal-fullscreen" title="Toggle fullscreen"><i data-lucide="maximize-2"></i></button>
+            <button class="file-viewer-btn pane-terminal-close" title="Hide panel"><i data-lucide="minus"></i></button>
+          </div>
+        </div>
+        <div class="pane-terminal-toolbar hidden">
+          <button class="term-key" data-key="tab">Tab</button>
+          <button class="term-key term-key-toggle" data-key="ctrl">Ctrl</button>
+          <button class="term-key" data-key="esc">Esc</button>
+          <span class="term-key-spacer"></span>
+          <button class="term-key term-key-arrow" data-key="up">&#9650;</button>
+          <button class="term-key term-key-arrow" data-key="down">&#9660;</button>
+          <button class="term-key term-key-arrow" data-key="left">&#9664;</button>
+          <button class="term-key term-key-arrow" data-key="right">&#9654;</button>
+        </div>
+        <div class="pane-terminal-body"></div>
+      </div>
+      </div><!-- /pane-main-panels -->
+    </div>
+  </template>
+
+  </div><!-- /pane-layout -->
   </div><!-- /main-area -->
 
   <!-- === User Island === -->

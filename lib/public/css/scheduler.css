@@ -1138,11 +1138,11 @@
 }
 .scheduler-crafting-back .lucide { width: 14px; height: 14px; }
 .scheduler-crafting-back:hover { background: rgba(var(--overlay-rgb), 0.08); color: var(--text); }
-.scheduler-content-crafting #messages {
+.scheduler-content-crafting .pane-messages {
   flex: 1;
   min-height: 0;
 }
-.scheduler-content-crafting #input-area {
+.scheduler-content-crafting .pane-input-area {
   flex-shrink: 0;
 }
 

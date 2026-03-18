@@ -133,12 +133,12 @@
 
 /* --- Panel fullscreen --- */
 @media (min-width: 1024px) {
-  #main-column:has(.panel-fullscreen:not(.hidden)) > .title-bar-content { display: none; }
-  #main-panels:has(.panel-fullscreen:not(.hidden)) > #app { display: none; }
+  .pane:has(.panel-fullscreen:not(.hidden)) > .title-bar-content { display: none; }
+  .pane:has(.panel-fullscreen:not(.hidden)) .pane-app { display: none; }
 }
 @media (max-width: 1023px) {
-  #file-viewer-fullscreen,
-  #terminal-fullscreen { display: none; }
+  .pane-file-viewer-fullscreen,
+  .pane-terminal-fullscreen { display: none; }
 }
 
 /* --- Project settings --- */
@@ -503,9 +503,9 @@
 
 /* --- File viewer --- */
 
-/* Wide screens: split panel beside #app */
+/* Wide screens: split panel beside .pane-app */
 @media (min-width: 1024px) {
-  #file-viewer {
+  .pane-file-viewer {
     width: 50%;
     max-width: 720px;
     min-width: 360px;
@@ -517,12 +517,12 @@
     flex-shrink: 0;
     transition: max-width 0.2s ease, width 0.2s ease;
   }
-  #file-viewer.hidden { display: none; }
-  #file-viewer.file-viewer-wide {
+  .pane-file-viewer.hidden { display: none; }
+  .pane-file-viewer.file-viewer-wide {
     width: 70%;
     max-width: 1200px;
   }
-  #file-viewer.panel-fullscreen {
+  .pane-file-viewer.panel-fullscreen {
     width: 100%;
     max-width: none;
     min-width: 0;
@@ -531,7 +531,7 @@
 
 /* Narrow screens: full overlay */
 @media (max-width: 1023px) {
-  #file-viewer {
+  .pane-file-viewer {
     position: fixed;
     inset: 0;
     background: var(--bg);
@@ -540,7 +540,7 @@
     flex-direction: column;
     overflow: hidden;
   }
-  #file-viewer.hidden { display: none; }
+  .pane-file-viewer.hidden { display: none; }
 }
 
 .file-viewer-header {
@@ -867,9 +867,9 @@
   margin-left: auto;
 }
 
-/* Wide screens: split panel beside #app */
+/* Wide screens: split panel beside .pane-app */
 @media (min-width: 1024px) {
-  #terminal-container {
+  .pane-terminal-container {
     width: 50%;
     max-width: 720px;
     min-width: 360px;
@@ -880,8 +880,8 @@
     overflow: hidden;
     flex-shrink: 0;
   }
-  #terminal-container.hidden { display: none; }
-  #terminal-container.panel-fullscreen {
+  .pane-terminal-container.hidden { display: none; }
+  .pane-terminal-container.panel-fullscreen {
     width: 100%;
     max-width: none;
     min-width: 0;
@@ -890,7 +890,7 @@
 
 /* Narrow screens: full overlay */
 @media (max-width: 1023px) {
-  #terminal-container {
+  .pane-terminal-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -904,10 +904,10 @@
     flex-direction: column;
     overflow: hidden;
   }
-  #terminal-container.hidden { display: none; }
+  .pane-terminal-container.hidden { display: none; }
 }
 
-#terminal-body {
+.pane-terminal-body {
   flex: 1;
   min-height: 0;
   overflow: hidden;
@@ -925,7 +925,7 @@
 }
 
 /* --- Terminal key toolbar (mobile) --- */
-#terminal-toolbar {
+.pane-terminal-toolbar {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -937,7 +937,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-#terminal-toolbar.hidden { display: none; }
+.pane-terminal-toolbar.hidden { display: none; }
 
 .term-key {
   display: flex;
