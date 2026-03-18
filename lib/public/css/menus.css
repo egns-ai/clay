@@ -7,7 +7,7 @@
   display: none;
 }
 
-.pane-header-left {
+#header-left {
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -23,7 +23,7 @@
   white-space: nowrap;
 }
 
-.pane-header-rename-btn {
+#header-rename-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,10 +40,10 @@
   transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
 
-.pane-header-rename-btn:hover { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.04); border-color: var(--border); }
-.pane-header-rename-btn .lucide { width: 13px; height: 13px; }
+#header-rename-btn:hover { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.04); border-color: var(--border); }
+#header-rename-btn .lucide { width: 13px; height: 13px; }
 
-.pane-header-info-btn {
+#header-info-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,15 +60,15 @@
   transition: color 0.15s, background 0.15s;
   position: relative;
 }
-.pane-header-info-btn:hover { color: var(--text); }
-.pane-header-info-btn > * { pointer-events: none; }
-.pane-header-info-btn .lucide { width: 14px; height: 14px; }
-.pane-header-info-btn .lucide circle {
-  fill: currentcolor;
-  stroke: currentcolor;
+#header-info-btn:hover { color: var(--text); }
+#header-info-btn > * { pointer-events: none; }
+#header-info-btn .lucide { width: 14px; height: 14px; }
+#header-info-btn .lucide circle {
+  fill: currentColor;
+  stroke: currentColor;
 }
-.pane-header-info-btn .lucide path,
-.pane-header-info-btn .lucide line {
+#header-info-btn .lucide path,
+#header-info-btn .lucide line {
   stroke: var(--bg);
   stroke-width: 2.5;
 }
@@ -144,7 +144,7 @@
 
 /* --- Terminal toggle button (mobile only) --- */
 #footer-status,
-.pane-terminal-toggle-btn {
+#terminal-toggle-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,11 +157,11 @@
   transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
 #footer-status .lucide,
-.pane-terminal-toggle-btn .lucide { width: 15px; height: 15px; }
+#terminal-toggle-btn .lucide { width: 15px; height: 15px; }
 #footer-status:hover,
-.pane-terminal-toggle-btn:hover { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.04); border-color: var(--border); }
-.pane-terminal-toggle-btn { position: relative; }
-.pane-terminal-count {
+#terminal-toggle-btn:hover { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.04); border-color: var(--border); }
+#terminal-toggle-btn { position: relative; }
+#terminal-count {
   position: absolute;
   top: -4px;
   right: -4px;
@@ -178,7 +178,7 @@
   padding: 0 3px;
   font-family: "Roboto Mono", monospace;
 }
-.pane-terminal-count.hidden { display: none; }
+#terminal-count.hidden { display: none; }
 
 /* --- QR code button & overlay --- */
 #qr-btn {
@@ -444,13 +444,13 @@
 .tooltip.visible { opacity: 1; }
 
 /* --- Config chip (inline in input bottom bar) --- */
-.pane-config-chip-wrap {
+#config-chip-wrap {
   position: relative;
 }
 
-.pane-config-chip-wrap.hidden { display: none; }
+#config-chip-wrap.hidden { display: none; }
 
-.pane-config-chip {
+#config-chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -468,12 +468,12 @@
   white-space: nowrap;
 }
 
-.pane-config-chip .lucide { width: 10px; height: 10px; }
-.pane-config-chip .config-chip-icon { display: none; }
-.pane-config-chip:hover { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.06); }
-.pane-config-chip.active { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.06); }
+#config-chip .lucide { width: 10px; height: 10px; }
+#config-chip .config-chip-icon { display: none; }
+#config-chip:hover { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.06); }
+#config-chip.active { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.06); }
 
-.pane-config-popover {
+#config-popover {
   position: absolute;
   bottom: calc(100% + 4px);
   right: 0;
@@ -488,7 +488,7 @@
   z-index: 200;
 }
 
-.pane-config-popover.hidden { display: none; }
+#config-popover.hidden { display: none; }
 
 .config-section {
   padding: 6px 0 2px;
@@ -641,7 +641,7 @@
 }
 
 /* --- Info panels container --- */
-.pane-info-panels {
+#info-panels {
   position: fixed;
   top: 80px;
   right: 16px;
@@ -655,10 +655,10 @@
   pointer-events: none;
 }
 
-.pane-info-panels:empty { display: none; }
+#info-panels:empty { display: none; }
 
 /* --- Usage panel --- */
-.pane-usage-panel, .pane-status-panel, .pane-context-panel {
+#usage-panel, #status-panel, #context-panel {
   background: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -667,7 +667,7 @@
   pointer-events: auto;
 }
 
-.pane-usage-panel.hidden, .pane-status-panel.hidden, .pane-context-panel.hidden { display: none; }
+#usage-panel.hidden, #status-panel.hidden, #context-panel.hidden { display: none; }
 
 .usage-panel-header {
   display: flex;
@@ -793,7 +793,7 @@
 }
 
 /* --- Context mini bar (in input area) --- */
-.pane-context-mini {
+#context-mini {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -801,8 +801,8 @@
   cursor: pointer;
   transition: opacity 0.15s;
 }
-.pane-context-mini:hover { opacity: 0.8; }
-.pane-context-mini.hidden { display: none; }
+#context-mini:hover { opacity: 0.8; }
+#context-mini.hidden { display: none; }
 .context-mini-bar {
   flex: 1;
   height: 4px;
@@ -829,7 +829,7 @@
 }
 
 @media (max-width: 768px) {
-  .pane-info-panels {
+  #info-panels {
     top: auto;
     bottom: calc(var(--safe-bottom, 0px) + 56px + 64px);
     right: 12px;
@@ -839,8 +839,8 @@
   }
 
   /* Config chip: icon-only on mobile */
-  .pane-config-chip .config-chip-icon { display: inline; width: 14px; height: 14px; }
-  .pane-config-chip-label { display: none; }
+  #config-chip .config-chip-icon { display: inline; width: 14px; height: 14px; }
+  #config-chip-label { display: none; }
 }
 
 
