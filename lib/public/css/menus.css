@@ -64,8 +64,8 @@
 .pane-header-info-btn > * { pointer-events: none; }
 .pane-header-info-btn .lucide { width: 14px; height: 14px; }
 .pane-header-info-btn .lucide circle {
-  fill: currentColor;
-  stroke: currentColor;
+  fill: currentcolor;
+  stroke: currentcolor;
 }
 .pane-header-info-btn .lucide path,
 .pane-header-info-btn .lucide line {

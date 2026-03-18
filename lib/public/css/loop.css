@@ -837,14 +837,14 @@
 .pane-ralph-sticky.ralph-ready .ralph-sticky-inner {
   border-color: var(--accent, #6c5ce7);
   box-shadow: 0 0 12px 2px color-mix(in srgb, var(--accent, #6c5ce7) 35%, transparent);
-  animation: ralphReadyGlow 2s ease-in-out infinite;
+  animation: ralph-ready-glow 2s ease-in-out infinite;
 }
 .pane-ralph-sticky.ralph-ready .ralph-sticky-icon { color: var(--accent, #6c5ce7); }
 .pane-ralph-sticky.ralph-ready .ralph-sticky-status {
   color: var(--accent, #6c5ce7);
   font-weight: 600;
 }
-@keyframes ralphReadyGlow {
+@keyframes ralph-ready-glow {
   0%, 100% { box-shadow: 0 0 8px 1px color-mix(in srgb, var(--accent, #6c5ce7) 25%, transparent); }
   50% { box-shadow: 0 0 16px 4px color-mix(in srgb, var(--accent, #6c5ce7) 40%, transparent); }
 }

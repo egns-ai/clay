@@ -47,7 +47,7 @@
   height: 28px;
   min-height: 28px;
   padding: 0 8px;
-  background: var(--surface);
+  background: var(--surface, var(--bg-alt, #1a1a2e));
   border-bottom: 1px solid var(--border);
   font-size: 12px;
   color: var(--text-secondary);
@@ -82,7 +82,7 @@
 
 .pane-header-bar .pane-header-status-dot.waiting {
   background: var(--accent);
-  animation: status-pulse 1s ease-in-out infinite;
+  animation: status-pulse 1.5s ease-in-out infinite;
 }
 
 .pane-header-bar .pane-header-status-dot.done {
@@ -108,8 +108,8 @@
 }
 
 .pane-header-bar button:hover {
-  background: var(--surface-hover);
-  color: var(--text-primary);
+  background: var(--surface-hover, var(--bg, #0f0f23));
+  color: var(--text-primary, var(--text, #e0e0e0));
 }
 
 .pane-header-bar button svg {

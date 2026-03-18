@@ -42,6 +42,14 @@
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .agent-status-working,
+  .agent-status-waiting_permission,
+  .agent-status-waiting_input {
+    animation: none;
+  }
+}
+
 /* Session needs attention highlight */
 .session-item.session-needs-attention {
   background: rgba(240, 160, 48, 0.08);

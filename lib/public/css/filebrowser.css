@@ -134,7 +134,7 @@
 /* --- Panel fullscreen --- */
 @media (min-width: 1024px) {
   .pane:has(.panel-fullscreen:not(.hidden)) > .title-bar-content { display: none; }
-  .pane-main-panels:has(.panel-fullscreen:not(.hidden)) > .pane-app { display: none; }
+  .pane:has(.panel-fullscreen:not(.hidden)) .pane-app { display: none; }
 }
 @media (max-width: 1023px) {
   .pane-file-viewer-fullscreen,
