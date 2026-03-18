@@ -1,0 +1,52 @@
+/* --- Agent Status Dots --- */
+.agent-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* Working: animated blue pulse */
+.agent-status-working {
+  background: var(--accent, #4a9eff);
+  animation: agent-pulse 1.5s ease-in-out infinite;
+}
+
+/* Waiting permission: amber pulse */
+.agent-status-waiting_permission {
+  background: #f0a030;
+  animation: agent-pulse 1.2s ease-in-out infinite;
+}
+
+/* Waiting input: amber pulse */
+.agent-status-waiting_input {
+  background: #f0a030;
+  animation: agent-pulse 1.2s ease-in-out infinite;
+}
+
+/* Done: solid green */
+.agent-status-done {
+  background: #30c050;
+}
+
+/* Errored: solid red */
+.agent-status-errored {
+  background: #e04040;
+}
+
+@keyframes agent-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Session needs attention highlight */
+.session-item.session-needs-attention {
+  background: rgba(240, 160, 48, 0.08);
+}
+
+.session-item.session-needs-attention:not(.active):hover {
+  background: rgba(240, 160, 48, 0.14);
+}

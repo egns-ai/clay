@@ -307,7 +307,7 @@
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.title-bar-content #header-left {
+.title-bar-content .pane-header-left {
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -355,8 +355,8 @@
   }
 
   /* Hide title-bar terminal & sticky-notes buttons on mobile (tab bar has them) */
-  .title-bar-content .status #terminal-toggle-btn,
-  .title-bar-content .status #sticky-notes-toggle-btn {
+  .title-bar-content .status .pane-terminal-toggle-btn,
+  .title-bar-content .status .pane-sticky-notes-toggle-btn {
     display: none;
   }
 }

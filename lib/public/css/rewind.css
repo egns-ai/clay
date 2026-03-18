@@ -3,24 +3,24 @@
    Visibility is handled by .msg-action-btn opacity hover rules. */
 
 /* --- Rewind mode (timeline visible, strong markers) --- */
-#app.rewind-mode .msg-user[data-uuid] .bubble {
+.pane-app.rewind-mode .msg-user[data-uuid] .bubble {
   box-shadow: 0 0 0 2px var(--accent);
 }
 
-#app.rewind-mode .msg-user[data-uuid] .bubble:hover {
+.pane-app.rewind-mode .msg-user[data-uuid] .bubble:hover {
   box-shadow: 0 0 0 2px var(--accent-hover), 0 0 12px var(--accent-20);
 }
 
-#app.rewind-mode .msg-user[data-uuid] .msg-user-rewind-btn {
+.pane-app.rewind-mode .msg-user[data-uuid] .msg-user-rewind-btn {
   opacity: 1;
   color: var(--accent);
 }
 
-#app.rewind-mode .msg-user:not([data-uuid]) { opacity: 0.35; }
-#app.rewind-mode .msg-assistant { opacity: 0.5; }
-#app.rewind-mode .tool-item { opacity: 0.4; }
-#app.rewind-mode .thinking-item { opacity: 0.4; }
-#app.rewind-mode .permission-container { opacity: 0.4; }
+.pane-app.rewind-mode .msg-user:not([data-uuid]) { opacity: 0.35; }
+.pane-app.rewind-mode .msg-assistant { opacity: 0.5; }
+.pane-app.rewind-mode .tool-item { opacity: 0.4; }
+.pane-app.rewind-mode .thinking-item { opacity: 0.4; }
+.pane-app.rewind-mode .permission-container { opacity: 0.4; }
 
 .rewind-mode-banner {
   position: absolute;

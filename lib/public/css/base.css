@@ -234,7 +234,7 @@ html, body {
 }
 
 /* --- Main Column --- */
-#main-column {
+.pane {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -244,7 +244,7 @@ html, body {
 }
 
 /* --- Main Panels (app + file-viewer + terminal side-by-side) --- */
-#main-panels {
+.pane-main-panels {
   flex: 1;
   display: flex;
   min-width: 0;
