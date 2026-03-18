@@ -1223,6 +1223,19 @@ pre.mermaid-error {
   opacity: 1;
 }
 .plan-permission-actions .plan-btn-clear .lucide { width: 14px; height: 14px; flex-shrink: 0; }
+.plan-permission-actions .plan-btn-worktree {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-alt);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+.plan-permission-actions .plan-btn-worktree:hover {
+  background: var(--input-bg);
+  opacity: 1;
+}
+.plan-permission-actions .plan-btn-worktree .lucide { width: 14px; height: 14px; flex-shrink: 0; }
 .plan-ctx-pct {
   font-family: "Roboto Mono", monospace;
   font-size: 11px;
