@@ -569,6 +569,19 @@ function getAllIPs() {
   return ips;
 }
 
+function getTailscaleHostname() {
+  try {
+    var result = execSync("tailscale status --json", { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] });
+    var data = JSON.parse(result);
+    var self = data && data.Self;
+    if (self && self.DNSName) {
+      // DNSName includes trailing dot, e.g. "nick-nucbox-k11.tail4a0995.ts.net."
+      return self.DNSName.replace(/\.$/, "");
+    }
+  } catch (e) {}
+  return null;
+}
+
 function ensureCerts(ip) {
   var homeDir = os.homedir();
   var certDir = path.join(process.env.CLAY_HOME || path.join(homeDir, ".clay"), "certs");
@@ -593,18 +606,26 @@ function ensureCerts(ip) {
     if (!fs.existsSync(caRoot)) caRoot = null;
   } catch (e) {}
 
-  // Collect all IPv4 addresses (Tailscale + LAN)
+  // Collect all IPv4 addresses (Tailscale + LAN) and Tailscale hostname
   var allIPs = getAllIPs();
+  var tsHostname = getTailscaleHostname();
 
   if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
     var needRegen = false;
     try {
       var certText = execFileSync("openssl", ["x509", "-in", certPath, "-text", "-noout"], { encoding: "utf8" });
+      // If the cert was issued by a trusted CA (not mkcert), don't overwrite it —
+      // e.g. a Tailscale cert obtained via `tailscale cert`.
+      var isMkcert = certText.indexOf("mkcert") !== -1;
+      if (!isMkcert) return { key: keyPath, cert: certPath, caRoot: caRoot };
       for (var i = 0; i < allIPs.length; i++) {
         if (certText.indexOf(allIPs[i]) === -1) {
           needRegen = true;
           break;
         }
+      }
+      if (!needRegen && tsHostname && certText.indexOf(tsHostname) === -1) {
+        needRegen = true;
       }
     } catch (e) { needRegen = true; }
     if (!needRegen) return { key: keyPath, cert: certPath, caRoot: caRoot };
@@ -616,6 +637,7 @@ function ensureCerts(ip) {
   for (var i = 0; i < allIPs.length; i++) {
     if (domains.indexOf(allIPs[i]) === -1) domains.push(allIPs[i]);
   }
+  if (tsHostname && domains.indexOf(tsHostname) === -1) domains.push(tsHostname);
 
   try {
     var mkcertArgs = ["-key-file", keyPath, "-cert-file", certPath].concat(domains);
