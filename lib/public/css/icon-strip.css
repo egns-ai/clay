@@ -956,6 +956,16 @@
   display: none;
 }
 
+.create-worktree-select {
+  appearance: auto;
+  cursor: pointer;
+}
+
+.create-worktree-select:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 /* --- Per-project presence avatars --- */
 /* --- Mobile: hide icon strip --- */
 @media (max-width: 768px) {

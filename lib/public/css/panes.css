@@ -1,0 +1,391 @@
+/* --- Tiling Panes --- */
+
+#pane-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#pane-area.hidden {
+  display: none;
+}
+
+/* --- Split containers (desktop) --- */
+@media (min-width: 1024px) {
+  .pane-split {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pane-split-horizontal {
+    flex-direction: row;
+  }
+
+  .pane-split-vertical {
+    flex-direction: column;
+  }
+
+  .pane-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle, #333);
+    border-radius: 6px;
+    background: var(--bg, #1e1e2e);
+    position: relative;
+  }
+
+  .pane-container.pane-active {
+    border-color: var(--accent, #7c3aed);
+    box-shadow: 0 0 0 1px var(--accent, #7c3aed);
+  }
+
+  /* --- Pane header --- */
+  .pane-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+    background: var(--bg-secondary, #282a36);
+    border-bottom: 1px solid var(--border-subtle, #333);
+    min-height: 28px;
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .pane-header-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary, #999);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pane-header-btns {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+
+  .pane-header-btn {
+    background: none;
+    border: none;
+    color: var(--text-tertiary, #666);
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .pane-header-btn:hover {
+    background: var(--bg-hover, #333);
+    color: var(--text-secondary, #999);
+  }
+
+  .pane-close-btn:hover {
+    color: var(--error, #f44);
+  }
+
+  /* --- Pane messages --- */
+  .pane-messages {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 0;
+    scroll-behavior: smooth;
+  }
+
+  /* --- Pane input --- */
+  .pane-input-area {
+    border-top: 1px solid var(--border-subtle, #333);
+    padding: 6px 8px;
+    flex-shrink: 0;
+  }
+
+  .pane-input-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .pane-input {
+    flex: 1;
+    background: var(--input-bg, #1a1a2e);
+    border: 1px solid var(--border-subtle, #333);
+    border-radius: 8px;
+    color: var(--text, #e0e0e0);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 6px 10px;
+    resize: none;
+    outline: none;
+    min-height: 28px;
+    max-height: 80px;
+    overflow-y: auto;
+    line-height: 1.4;
+  }
+
+  .pane-input:focus {
+    border-color: var(--accent, #7c3aed);
+  }
+
+  .pane-send-btn {
+    background: var(--accent, #7c3aed);
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pane-send-btn:hover {
+    opacity: 0.85;
+  }
+
+  /* --- Resize handles --- */
+  .pane-resize-handle {
+    flex-shrink: 0;
+    z-index: 10;
+    position: relative;
+  }
+
+  .pane-resize-horizontal {
+    width: 4px;
+    cursor: col-resize;
+    background: var(--border-subtle, #333);
+  }
+
+  .pane-resize-horizontal:hover,
+  .pane-resizing .pane-resize-horizontal {
+    background: var(--accent, #7c3aed);
+  }
+
+  .pane-resize-vertical {
+    height: 4px;
+    cursor: row-resize;
+    background: var(--border-subtle, #333);
+  }
+
+  .pane-resize-vertical:hover,
+  .pane-resizing .pane-resize-vertical {
+    background: var(--accent, #7c3aed);
+  }
+
+  /* Prevent text selection while resizing */
+  body.pane-resizing {
+    user-select: none;
+    cursor: col-resize;
+  }
+
+  body.pane-resizing .pane-resize-vertical {
+    cursor: row-resize;
+  }
+
+  /* --- Drop zone overlays --- */
+  .pane-drop-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 20;
+    transition: background 0.1s;
+  }
+
+  .pane-drop-left {
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.25) 0%, rgba(124, 58, 237, 0.25) 50%, transparent 50%);
+  }
+
+  .pane-drop-right {
+    background: linear-gradient(90deg, transparent 50%, rgba(124, 58, 237, 0.25) 50%);
+  }
+
+  .pane-drop-top {
+    background: linear-gradient(180deg, rgba(124, 58, 237, 0.25) 0%, rgba(124, 58, 237, 0.25) 50%, transparent 50%);
+  }
+
+  .pane-drop-bottom {
+    background: linear-gradient(180deg, transparent 50%, rgba(124, 58, 237, 0.25) 50%);
+  }
+
+  .pane-drop-center {
+    background: rgba(124, 58, 237, 0.15);
+    border: 2px dashed var(--accent, #7c3aed);
+  }
+
+  /* Visual indicator on body during drag */
+  body.pane-drag-active .pane-container {
+    transition: border-color 0.15s;
+  }
+}
+
+/* --- Mobile: Tab bar --- */
+@media (max-width: 1023px) {
+  .pane-split,
+  .pane-resize-handle {
+    display: none;
+  }
+
+  .pane-tabs {
+    display: flex;
+    overflow-x: auto;
+    background: var(--bg-secondary, #282a36);
+    border-bottom: 1px solid var(--border-subtle, #333);
+    padding: 0 4px;
+    gap: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-shrink: 0;
+  }
+
+  .pane-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pane-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-tertiary, #666);
+    font-size: 12px;
+    white-space: nowrap;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .pane-tab:hover {
+    color: var(--text-secondary, #999);
+  }
+
+  .pane-tab-active {
+    color: var(--text, #e0e0e0);
+    border-bottom-color: var(--accent, #7c3aed);
+  }
+
+  .pane-tab-title {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pane-tab-close {
+    background: none;
+    border: none;
+    color: var(--text-tertiary, #666);
+    cursor: pointer;
+    padding: 0 2px;
+    font-size: 10px;
+    line-height: 1;
+    border-radius: 3px;
+  }
+
+  .pane-tab-close:hover {
+    color: var(--error, #f44);
+    background: var(--bg-hover, #333);
+  }
+
+  .pane-mobile-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pane-mobile-content .pane-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    background: var(--bg, #1e1e2e);
+  }
+
+  .pane-mobile-content .pane-messages {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 0;
+  }
+
+  .pane-mobile-content .pane-input-area {
+    border-top: 1px solid var(--border-subtle, #333);
+    padding: 6px 8px;
+    flex-shrink: 0;
+  }
+
+  .pane-mobile-content .pane-input-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .pane-mobile-content .pane-input {
+    flex: 1;
+    background: var(--input-bg, #1a1a2e);
+    border: 1px solid var(--border-subtle, #333);
+    border-radius: 8px;
+    color: var(--text, #e0e0e0);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 6px 10px;
+    resize: none;
+    outline: none;
+    min-height: 28px;
+    max-height: 80px;
+    overflow-y: auto;
+    line-height: 1.4;
+  }
+
+  .pane-mobile-content .pane-send-btn {
+    background: var(--accent, #7c3aed);
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Full-screen pane area on mobile when active */
+  #pane-area:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* --- Drag session indicator --- */
+.session-item[draggable="true"] {
+  cursor: grab;
+}
+
+.session-item[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+body.pane-drag-active #pane-area:not(.hidden) .pane-container {
+  outline: 2px dashed var(--border-subtle, #444);
+  outline-offset: -2px;
+}
