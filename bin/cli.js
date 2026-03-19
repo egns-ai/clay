@@ -594,6 +594,8 @@ function ensureCerts(ip) {
     var needRegen = false;
     try {
       var certText = execFileSync("openssl", ["x509", "-in", certPath, "-text", "-noout"], { encoding: "utf8" });
+      // If cert is from an external CA (e.g. Tailscale/Let's Encrypt), never regenerate
+      if (certText.indexOf("mkcert") === -1) return { key: keyPath, cert: certPath, caRoot: caRoot };
       for (var i = 0; i < allIPs.length; i++) {
         if (certText.indexOf(allIPs[i]) === -1) {
           needRegen = true;
