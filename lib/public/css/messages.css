@@ -2,7 +2,7 @@
    Messages
    ========================================================================== */
 
-.pane-messages {
+#messages {
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -11,20 +11,20 @@
 }
 
 /* --- Sticky todo (inline in title bar) --- */
-.pane-todo-sticky {
+#todo-sticky {
   position: relative;
   flex-shrink: 0;
 }
-.pane-todo-sticky.hidden { display: none; }
+#todo-sticky.hidden { display: none; }
 
-.pane-todo-sticky .todo-sticky-inner {
+#todo-sticky .todo-sticky-inner {
   background: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
 }
 
-.pane-todo-sticky .todo-sticky-header {
+#todo-sticky .todo-sticky-header {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -32,16 +32,16 @@
   cursor: pointer;
   user-select: none;
 }
-.pane-todo-sticky .todo-sticky-header:hover { background: rgba(var(--overlay-rgb), 0.03); border-radius: 10px; }
-.pane-todo-sticky .todo-sticky-icon { display: inline-flex; color: var(--accent); }
-.pane-todo-sticky .todo-sticky-icon .lucide { width: 13px; height: 13px; }
-.pane-todo-sticky .todo-sticky-title { font-size: 11px; font-weight: 600; color: var(--text-secondary); }
-.pane-todo-sticky .todo-sticky-count { font-size: 11px; color: var(--text-muted); font-family: "Roboto Mono", monospace; }
-.pane-todo-sticky .todo-sticky-chevron { display: inline-flex; color: var(--text-muted); transition: transform 0.2s; }
-.pane-todo-sticky .todo-sticky-chevron .lucide { width: 11px; height: 11px; }
-.pane-todo-sticky.collapsed .todo-sticky-chevron { transform: rotate(-90deg); }
-.pane-todo-sticky .todo-sticky-active { display: none; }
-.pane-todo-sticky.collapsed .todo-sticky-active {
+#todo-sticky .todo-sticky-header:hover { background: rgba(var(--overlay-rgb), 0.03); border-radius: 10px; }
+#todo-sticky .todo-sticky-icon { display: inline-flex; color: var(--accent); }
+#todo-sticky .todo-sticky-icon .lucide { width: 13px; height: 13px; }
+#todo-sticky .todo-sticky-title { font-size: 11px; font-weight: 600; color: var(--text-secondary); }
+#todo-sticky .todo-sticky-count { font-size: 11px; color: var(--text-muted); font-family: "Roboto Mono", monospace; }
+#todo-sticky .todo-sticky-chevron { display: inline-flex; color: var(--text-muted); transition: transform 0.2s; }
+#todo-sticky .todo-sticky-chevron .lucide { width: 11px; height: 11px; }
+#todo-sticky.collapsed .todo-sticky-chevron { transform: rotate(-90deg); }
+#todo-sticky .todo-sticky-active { display: none; }
+#todo-sticky.collapsed .todo-sticky-active {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -53,14 +53,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.pane-todo-sticky.collapsed .todo-sticky-active .lucide { width: 11px; height: 11px; color: var(--accent); flex-shrink: 0; }
-.pane-todo-sticky.collapsed .todo-sticky-title { flex: none; }
+#todo-sticky.collapsed .todo-sticky-active .lucide { width: 11px; height: 11px; color: var(--accent); flex-shrink: 0; }
+#todo-sticky.collapsed .todo-sticky-title { flex: none; }
 
-.pane-todo-sticky .todo-sticky-progress { height: 2px; background: var(--border); }
-.pane-todo-sticky .todo-sticky-progress-bar { height: 100%; background: var(--success); transition: width 0.3s ease; }
+#todo-sticky .todo-sticky-progress { height: 2px; background: var(--border); }
+#todo-sticky .todo-sticky-progress-bar { height: 100%; background: var(--success); transition: width 0.3s ease; }
 
 /* Expanded dropdown (items list) */
-.pane-todo-sticky .todo-sticky-items {
+#todo-sticky .todo-sticky-items {
   position: absolute;
   top: 100%;
   left: 0;
@@ -74,10 +74,10 @@
   margin-top: 4px;
   z-index: 200;
 }
-.pane-todo-sticky.collapsed .todo-sticky-items { display: none; }
-.pane-todo-sticky.collapsed .todo-sticky-progress { height: 3px; border-radius: 0 0 10px 10px; overflow: hidden; }
+#todo-sticky.collapsed .todo-sticky-items { display: none; }
+#todo-sticky.collapsed .todo-sticky-progress { height: 3px; border-radius: 0 0 10px 10px; overflow: hidden; }
 
-.pane-todo-sticky .todo-sticky-item {
+#todo-sticky .todo-sticky-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -85,17 +85,17 @@
   font-size: 12px;
   line-height: 1.4;
 }
-.pane-todo-sticky .todo-sticky-item-icon { display: inline-flex; flex-shrink: 0; }
-.pane-todo-sticky .todo-sticky-item.pending .todo-sticky-item-icon { color: var(--text-dimmer); }
-.pane-todo-sticky .todo-sticky-item.in-progress .todo-sticky-item-icon { color: var(--accent); }
-.pane-todo-sticky .todo-sticky-item.completed .todo-sticky-item-icon { color: var(--success); }
-.pane-todo-sticky .todo-sticky-item-text { flex: 1; }
-.pane-todo-sticky .todo-sticky-item.pending .todo-sticky-item-text { color: var(--text-muted); }
-.pane-todo-sticky .todo-sticky-item.in-progress .todo-sticky-item-text { color: var(--text); }
-.pane-todo-sticky .todo-sticky-item.completed .todo-sticky-item-text { color: var(--text-dimmer); text-decoration: line-through; }
+#todo-sticky .todo-sticky-item-icon { display: inline-flex; flex-shrink: 0; }
+#todo-sticky .todo-sticky-item.pending .todo-sticky-item-icon { color: var(--text-dimmer); }
+#todo-sticky .todo-sticky-item.in-progress .todo-sticky-item-icon { color: var(--accent); }
+#todo-sticky .todo-sticky-item.completed .todo-sticky-item-icon { color: var(--success); }
+#todo-sticky .todo-sticky-item-text { flex: 1; }
+#todo-sticky .todo-sticky-item.pending .todo-sticky-item-text { color: var(--text-muted); }
+#todo-sticky .todo-sticky-item.in-progress .todo-sticky-item-text { color: var(--text); }
+#todo-sticky .todo-sticky-item.completed .todo-sticky-item-text { color: var(--text-dimmer); text-decoration: line-through; }
 
 /* --- Scroll-to-bottom floating button --- */
-.pane-new-msg-btn {
+#new-msg-btn {
   position: absolute;
   bottom: 80px;
   left: 50%;
@@ -111,11 +111,11 @@
   transition: opacity 0.15s;
   box-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.3);
 }
-.pane-new-msg-btn:hover {
+#new-msg-btn:hover {
   background: var(--sidebar-hover);
   color: var(--text);
 }
-.pane-new-msg-btn.hidden {
+#new-msg-btn.hidden {
   display: none;
 }
 
@@ -1223,6 +1223,19 @@ pre.mermaid-error {
   opacity: 1;
 }
 .plan-permission-actions .plan-btn-clear .lucide { width: 14px; height: 14px; flex-shrink: 0; }
+.plan-permission-actions .plan-btn-worktree {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-alt);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+.plan-permission-actions .plan-btn-worktree:hover {
+  background: var(--input-bg);
+  opacity: 1;
+}
+.plan-permission-actions .plan-btn-worktree .lucide { width: 14px; height: 14px; flex-shrink: 0; }
 .plan-ctx-pct {
   font-family: "Roboto Mono", monospace;
   font-size: 11px;
@@ -1588,17 +1601,17 @@ pre.mermaid-error {
 }
 
 /* DM mode: hide project-specific UI elements */
-.pane.dm-mode .msg-group,
-.pane.dm-mode .pane-suggestion-chips,
-.pane.dm-mode .tool-group {
+#main-column.dm-mode .msg-group,
+#main-column.dm-mode #suggestion-chips,
+#main-column.dm-mode .tool-group {
   display: none;
 }
 
 /* DM mode: simplify input bar (no voice, no model config, no context, no slash menu) */
-.pane.dm-mode .pane-stt-btn,
-.pane.dm-mode .pane-config-chip-wrap,
-.pane.dm-mode .pane-context-mini,
-.pane.dm-mode .pane-slash-menu {
+#main-column.dm-mode #stt-btn,
+#main-column.dm-mode #config-chip-wrap,
+#main-column.dm-mode #context-mini,
+#main-column.dm-mode #slash-menu {
   display: none !important;
 }
 
@@ -1621,11 +1634,11 @@ pre.mermaid-error {
   flex-shrink: 0;
 }
 
-.pane.dm-mode .title-bar-content {
+#main-column.dm-mode .title-bar-content {
   display: none;
 }
 
-.pane.dm-mode .dm-header-bar {
+#main-column.dm-mode .dm-header-bar {
   display: flex;
 }
 

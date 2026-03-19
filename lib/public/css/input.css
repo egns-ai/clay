@@ -212,13 +212,13 @@
 }
 
 /* --- Image preview bar --- */
-.pane-image-preview-bar {
+#image-preview-bar {
   display: none;
   width: 100%;
   padding: 6px 4px 4px 14px;
 }
 
-.pane-image-preview-bar.visible {
+#image-preview-bar.visible {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -267,18 +267,18 @@
    Input Area — Claude-style unified container
    ========================================================================== */
 
-.pane-input-area {
+#input-area {
   flex-shrink: 0;
   padding: 8px 16px calc(var(--safe-bottom) + 8px);
 }
 
-.pane-input-wrapper {
+#input-wrapper {
   max-width: var(--content-width);
   margin: 0 auto;
   position: relative;
 }
 
-.pane-input-row {
+#input-row {
   display: flex;
   flex-direction: column;
   background: var(--input-bg);
@@ -288,12 +288,12 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.pane-input-row:focus-within {
+#input-row:focus-within {
   border-color: var(--text-dimmer);
   box-shadow: 0 0 0 1px rgba(109, 104, 96, 0.15);
 }
 
-.pane-input {
+#input {
   width: 100%;
   background: transparent;
   border: none;
@@ -312,25 +312,25 @@
   text-align: start;
 }
 
-.pane-input::placeholder {
+#input::placeholder {
   color: var(--text-muted);
 }
 
 /* --- Bottom toolbar (attach left, model+send right) --- */
-.pane-input-bottom {
+#input-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.pane-input-bottom-right {
+#input-bottom-right {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
 /* --- Attach buttons & menu --- */
-.pane-attach-wrap {
+#attach-wrap {
   position: relative;
   flex-shrink: 0;
   display: flex;
@@ -338,8 +338,8 @@
   gap: 2px;
 }
 
-.pane-attach-file-btn,
-.pane-attach-image-btn {
+#attach-file-btn,
+#attach-image-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -354,13 +354,13 @@
   touch-action: manipulation;
 }
 
-.pane-attach-file-btn .lucide,
-.pane-attach-image-btn .lucide { width: 20px; height: 20px; }
+#attach-file-btn .lucide,
+#attach-image-btn .lucide { width: 20px; height: 20px; }
 
-.pane-attach-file-btn:hover,
-.pane-attach-image-btn:hover { background: rgba(var(--overlay-rgb), 0.06); color: var(--text); }
+#attach-file-btn:hover,
+#attach-image-btn:hover { background: rgba(var(--overlay-rgb), 0.06); color: var(--text); }
 
-.pane-send-btn {
+#send-btn {
   flex-shrink: 0;
   width: 36px;
   height: 36px;
@@ -376,21 +376,21 @@
   touch-action: manipulation;
 }
 
-.pane-send-btn .lucide {
+#send-btn .lucide {
   width: 18px;
   height: 18px;
 }
 
-.pane-send-btn:hover:not(:disabled) {
+#send-btn:hover:not(:disabled) {
   background: var(--accent-hover);
 }
 
-.pane-send-btn:disabled {
+#send-btn:disabled {
   opacity: 0.25;
   cursor: default;
 }
 
-.pane-send-btn:active:not(:disabled) {
+#send-btn:active:not(:disabled) {
   opacity: 0.7;
 }
 
@@ -398,7 +398,7 @@
    Slash Command Autocomplete
    ========================================================================== */
 
-.pane-slash-menu {
+#slash-menu {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -414,7 +414,7 @@
   z-index: 10;
 }
 
-.pane-slash-menu.visible { display: block; }
+#slash-menu.visible { display: block; }
 
 .slash-item {
   display: flex;
@@ -448,14 +448,14 @@
    Prompt Suggestion Chips
    ========================================================================== */
 
-.pane-suggestion-chips {
+#suggestion-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   padding: 0 0 8px;
 }
 
-.pane-suggestion-chips.hidden { display: none; }
+#suggestion-chips.hidden { display: none; }
 
 .suggestion-chip {
   display: inline-flex;
@@ -595,10 +595,10 @@
     border-right: 1px solid var(--border-subtle);
   }
 
-  .pane-hamburger-btn,
+  #hamburger-btn,
   #sidebar-toggle-btn,
-  .pane-sidebar-expand-btn,
-  #layout.sidebar-collapsed .pane-sidebar-expand-btn {
+  #sidebar-expand-btn,
+  #layout.sidebar-collapsed #sidebar-expand-btn {
     display: none;
   }
 
@@ -612,13 +612,18 @@
     max-width: 90%;
   }
 
-  .pane-input-row {
+  #input-row {
     border-radius: 20px;
   }
 
-  /* Offset for mobile tab bar (56px) */
-  .pane-input-area {
-    padding-bottom: calc(var(--safe-bottom) + 56px + 8px);
+  /* Offset for mobile tab bar (44px) */
+  #input-area {
+    padding-bottom: calc(var(--safe-bottom) + 44px + 8px);
+  }
+
+  /* When keyboard is open, tab bar is hidden behind keyboard — remove the offset */
+  body.keyboard-open #input-area {
+    padding-bottom: 8px;
   }
 }
 

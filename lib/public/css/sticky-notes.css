@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* --- Container (inside #app, absolutely positioned) --- */
-.pane-sticky-notes-container {
+#sticky-notes-container {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -11,10 +11,10 @@
   overflow: hidden;
 }
 
-.pane-sticky-notes-container.hidden { display: none; }
+#sticky-notes-container.hidden { display: none; }
 
 /* --- Toggle button (in title bar, matches terminal-toggle-btn) --- */
-.pane-sticky-notes-toggle-btn {
+#sticky-notes-toggle-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,9 +28,9 @@
   position: relative;
 }
 
-.pane-sticky-notes-toggle-btn .lucide { width: 15px; height: 15px; }
-.pane-sticky-notes-toggle-btn:hover { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.04); border-color: var(--border); }
-.pane-sticky-notes-toggle-btn.active { color: var(--text); background: rgba(var(--overlay-rgb),0.06); border-color: var(--border); }
+#sticky-notes-toggle-btn .lucide { width: 15px; height: 15px; }
+#sticky-notes-toggle-btn:hover { color: var(--text-secondary); background: rgba(var(--overlay-rgb),0.04); border-color: var(--border); }
+#sticky-notes-toggle-btn.active { color: var(--text); background: rgba(var(--overlay-rgb),0.06); border-color: var(--border); }
 
 .sticky-notes-count {
   position: absolute;
@@ -459,8 +459,8 @@
    ========================================================================== */
 
 /* Hide messages and input when archive is open */
-.pane-messages.hidden { display: none; }
-.pane-input-area.hidden { display: none; }
+#messages.hidden { display: none; }
+#input-area.hidden { display: none; }
 .title-bar-content.hidden { display: none !important; }
 
 #notes-archive {
@@ -782,7 +782,7 @@
   50% { box-shadow: 0 0 0 6px rgba(var(--accent-rgb, 99, 102, 241), 0); }
 }
 
-.pane-sticky-notes-toggle-btn.sn-onboarding-pulse {
+#sticky-notes-toggle-btn.sn-onboarding-pulse {
   animation: snOnboardingPulse 2s ease-in-out infinite;
   color: var(--accent) !important;
   border-color: var(--accent) !important;
@@ -832,8 +832,8 @@
 
 /* --- Mobile: hide entirely --- */
 @media (max-width: 768px) {
-  .pane-sticky-notes-container,
-  .pane-sticky-notes-toggle-btn {
+  #sticky-notes-container,
+  #sticky-notes-toggle-btn {
     display: none !important;
   }
 

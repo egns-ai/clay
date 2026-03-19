@@ -201,6 +201,7 @@ html, body {
   flex-direction: column;
   height: 100%;
   height: 100dvh;
+  position: relative;
 }
 
 #layout-body {
@@ -234,7 +235,7 @@ html, body {
 }
 
 /* --- Main Column --- */
-.pane {
+#main-column {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -244,7 +245,7 @@ html, body {
 }
 
 /* --- Main Panels (app + file-viewer + terminal side-by-side) --- */
-.pane-main-panels {
+#main-panels {
   flex: 1;
   display: flex;
   min-width: 0;
